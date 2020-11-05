@@ -1,0 +1,28 @@
+syntax on
+
+set noerrorbells
+set tabstop=4 softtabstop=4
+set shiftwidth=4
+set expandtab
+set smartindent
+set nu
+set nowrap
+set smartcase
+set noswapfile
+set nobackup
+set undodir=~/.vim/ideaundodir
+set undofile 
+set incsearch
+set number
+set relativenumber
+set colorcolumn=80
+set background=dark
+
+nnoremap <SPACE> <Nop>
+let mapleader = " "
+
+" Quickly insert an empty new line without entering insert mode
+nnoremap <Leader>o o<Esc>
+nnoremap <Leader>O O<Esc>
+
+
