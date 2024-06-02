@@ -1,0 +1,16 @@
+[window]
+decorations = "Transparent"
+opacity = 0.9
+dynamic_padding = true
+
+[font]
+normal = { family = "Monaspace Xenon", style = "Regular"}
+bold = { family = "Monaspace Xenon", style = "Bold"}
+italic = { family = "Monaspace Xenon", style = "Italic"}
+offset = { x = 1, y = 10}
+glyph_offset = { x = 0, y = 5}
+builtin_box_drawing = true
+size = 10
+
+[colors]
+transparent_background_colors = true
