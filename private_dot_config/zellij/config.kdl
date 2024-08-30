@@ -107,24 +107,20 @@ keybinds {
         }
     }
     tmux clear-defaults=true {
+        bind "Ctrl m" { SwitchToMode "move"; }
+        bind "Ctrl =" { SwitchToMode "resize"; }
+        bind "Ctrl t" { SwitchToMode "tab"; }
+        bind "Ctrl p" { SwitchToMode "pane"; }
+
         bind "e" { EditScrollback; SwitchToMode "Normal"; }
-        bind "m" { SwitchToMode "move"; }
-        bind "=" { SwitchToMode "resize"; }
-        bind "s" { NewPane "Down"; SwitchToMode "Normal"; }
-        bind "v" { NewPane "Right"; SwitchToMode "Normal"; }
 
-        bind "h" { MoveFocus "Left"; }
-        bind "j" { MoveFocus "Down"; }
-        bind "k" { MoveFocus "Up"; }
-        bind "l" { MoveFocus "Right"; }
-
-        bind "Left"  { MovePane "Left"; }
-        bind "Down"  { MovePane "Down"; }
-        bind "Up"    { MovePane "Up"; }
-        bind "Right" { MovePane "Right"; }
+        bind "h" { MoveFocus "Left"; SwitchToMode "Normal"; }
+        bind "j" { MoveFocus "Down"; SwitchToMode "Normal"; }
+        bind "k" { MoveFocus "Up"; SwitchToMode "Normal"; }
+        bind "l" { MoveFocus "Right"; SwitchToMode "Normal"; }
 
         bind "w" { ToggleFloatingPanes; SwitchToMode "Normal"; }
-        bind "n" { NewPane; }
+        bind "n" { NewPane; SwitchToMode "Normal";}
         bind "z" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
 
         bind "Enter" "Esc" { SwitchToMode "Normal"; }

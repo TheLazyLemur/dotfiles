@@ -1,0 +1,20 @@
+import = [
+    "~/.config/alacritty/themes/rosepine.toml"
+]
+
+[window]
+decorations     = "None"
+opacity         = 0.98
+dynamic_padding = false
+
+[font]
+normal              = { family = "JetBrainsMono NF", style = "Regular" }
+bold                = { family = "JetBrainsMono NF", style = "Bold" }
+italic              = { family = "JetBrainsMono NF", style = "Italic" }
+builtin_box_drawing = true
+offset              = { x = 1, y = 10 }
+glyph_offset        = { x = 0, y = 5 }
+size                = 11
+
+[mouse]
+hide_when_typing = true
