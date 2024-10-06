@@ -45,4 +45,6 @@ vim.opt.completeopt = 'menuone,noinsert,noselect'
 vim.opt.virtualedit = 'block'
 
 vim.cmd('filetype plugin indent on')
+vim.filetype.add({ extension = { templ = "templ" } })
+
 
