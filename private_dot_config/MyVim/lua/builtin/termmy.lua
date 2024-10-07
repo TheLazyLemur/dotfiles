@@ -41,6 +41,7 @@ TERMMY.toggle = function(split, dir)
         vim.api.nvim_win_set_buf(TERMMY.win, TERMMY.buf)
     end
 
+    vim.cmd("startinsert")
     TERMMY.buf = vim.api.nvim_get_current_buf()
 end
 
