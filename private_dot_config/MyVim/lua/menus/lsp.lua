@@ -11,6 +11,7 @@ return {
         name = "References",
         cmd = vim.lsp.buf.references,
     },
+    { name = "separator" },
     {
         name = "Hover",
         cmd = vim.lsp.buf.hover,
@@ -19,6 +20,7 @@ return {
         name = "Code Actions",
         cmd = vim.lsp.buf.code_action,
     },
+    { name = "separator" },
     {
         name = "Rename",
         cmd = vim.lsp.buf.rename,
