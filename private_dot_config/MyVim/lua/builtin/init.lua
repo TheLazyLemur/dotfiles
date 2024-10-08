@@ -2,7 +2,7 @@ require("builtin.termmy").setup(function()
     local total_width = vim.o.columns
     local total_height = vim.o.lines
 
-    local win_width = math.floor(total_width / 1.5)
+    local win_width = math.floor(total_width / 1.3)
     local win_height = math.floor(total_height / 1.5)
 
     local row = math.floor((total_height - win_height) / 2)

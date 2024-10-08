@@ -29,9 +29,6 @@ require("mini.icons").mock_nvim_web_devicons()
 MiniDeps.add("echasnovski/mini.pick")
 require("mini.pick").setup()
 
-MiniDeps.add("echasnovski/mini.completion")
-require("mini.completion").setup()
-
 MiniDeps.add("echasnovski/mini.hipatterns")
 local hipatterns = require('mini.hipatterns')
 hipatterns.setup({

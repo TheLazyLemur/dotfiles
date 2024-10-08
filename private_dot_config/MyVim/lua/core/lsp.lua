@@ -14,3 +14,23 @@ for _, server in ipairs(servers) do
     }
   }
 end
+
+MiniDeps.add({
+    source = "saghen/blink.cmp",
+    checkout = 'v0.*'
+})
+require("blink.cmp").setup({
+  keymap = {
+    accept = '<C-y>',
+    select_prev = { '<C-p>' },
+    select_next = { '<C-n>' },
+  },
+  trigger = {
+    signature_help = {
+      enabled = true,
+      blocked_trigger_characters = {},
+      blocked_retrigger_characters = {},
+      show_on_insert_on_trigger_character = true,
+    },
+  },
+})
