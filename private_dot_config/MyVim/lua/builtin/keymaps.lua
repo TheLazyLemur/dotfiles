@@ -7,3 +7,8 @@ vim.keymap.set({"n", "t"}, "<leader>tF", function() termmy.toggle(false, vim.fn.
 
 vim.keymap.set("n", "<leader>ba", require("builtin.bookmarks").bookmark_file)
 vim.keymap.set("n", "<leader>bs", require("builtin.bookmarks").show_selection_ui)
+
+
+vim.keymap.set('n', '<leader>cc', function()
+    require('builtin.compile').compile()
+end, { desc = '[E]rror [C]ompile' })

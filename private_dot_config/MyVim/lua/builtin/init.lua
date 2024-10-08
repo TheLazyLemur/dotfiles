@@ -20,5 +20,6 @@ require("builtin.termmy").setup(function()
 end)
 
 require("builtin.bookmarks").setup()
+require("builtin.compile")
 
 require("builtin.keymaps")

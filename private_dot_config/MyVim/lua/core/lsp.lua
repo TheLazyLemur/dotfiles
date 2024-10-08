@@ -5,7 +5,7 @@ require("mason").setup()
 MiniDeps.add("neovim/nvim-lspconfig")
 local lspconfig = require("lspconfig")
 
-local servers = { "gopls", "templ" }
+local servers = { "gopls", "templ", "lua_ls" }
 
 for _, server in ipairs(servers) do
   lspconfig[server].setup {

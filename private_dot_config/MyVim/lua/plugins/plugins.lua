@@ -5,7 +5,7 @@ local plugins = {
             require('gitsigns').setup()
         end
     },
-    { 
+    {
         source = "stevearc/oil.nvim",
         config = function()
             require("oil").setup()
@@ -39,7 +39,7 @@ local plugins = {
         config = function()
             vim.fn.sign_define('DapBreakpoint', { text = " ", texthl = 'error', linehl = 'error', numhl = 'error' })
             vim.fn.sign_define('DapBreakpointCondition',
-            { text = " ", texthl = 'warn', linehl = 'warn', numhl = 'warn' })
+                { text = " ", texthl = 'warn', linehl = 'warn', numhl = 'warn' })
 
             local dap = require("dap")
             local dapui = require("dapui")
@@ -86,6 +86,9 @@ local plugins = {
     },
     {
         source = 'nvim-treesitter/nvim-treesitter',
+        depends = {
+            "nvim-treesitter/nvim-treesitter-context",
+        },
         checkout = 'master',
         monitor = 'main',
         hooks = { post_checkout = function() vim.cmd('TSUpdate') end },
@@ -94,14 +97,19 @@ local plugins = {
                 ensure_installed = { 'go' },
                 highlight = { enable = true },
             })
+            require 'treesitter-context'.setup {}
         end
+    },
+    {
+        name = "error-jump",
+        source = "Dr-42/error-jump.nvim",
     },
 }
 
 for _, p in pairs(plugins) do
     MiniDeps.add(p)
     if p.config ~= nil then
-        MiniDeps.now(function() 
+        MiniDeps.now(function()
             local ok = pcall(p.config)
             if not ok then
                 print("Failed to load plugin" .. p.source)

@@ -37,3 +37,4 @@ vim.keymap.set('n', '<leader>b', dap.toggle_breakpoint)
 vim.keymap.set('n', '<leader>B', function()
     dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
 end, { desc = 'Debug: Set Breakpoint' })
+
