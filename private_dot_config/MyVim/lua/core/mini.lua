@@ -19,9 +19,6 @@ require("mini.statusline").setup()
 MiniDeps.add("echasnovski/mini.basics")
 require("mini.basics").setup()
 
-MiniDeps.add("echasnovski/mini.extra")
-require("mini.extra").setup()
-
 MiniDeps.add("echasnovski/mini.icons")
 require("mini.icons").setup()
 require("mini.icons").mock_nvim_web_devicons()

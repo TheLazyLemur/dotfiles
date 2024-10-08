@@ -23,7 +23,6 @@ vim.keymap.set("n", "<leader>sf", ":Pick files<cr>")
 vim.keymap.set("n", "<leader>sg", ":Pick grep_live<cr>")
 vim.keymap.set("n", "<leader>gs", ":Pick grep<cr>")
 vim.keymap.set("n", "<leader><leader>", ":Pick buffers<cr>")
-vim.keymap.set("n", "<leader>/", ":Pick buf_lines<cr>")
 
 vim.keymap.set("n", "gd", vim.lsp.buf.definition)
 vim.keymap.set("n", "gi", vim.lsp.buf.implementation)
