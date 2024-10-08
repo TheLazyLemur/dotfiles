@@ -2,7 +2,7 @@ local M = {}
 
 M.compile = function()
     require('error-jump').compile()
-    vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], { buffer = 0 })
+    vim.cmd("stopinsert")
     vim.keymap.set('n', '<cr>', function() M.open("vsplit") end, { desc = '[E]rror [S]ource', buffer = 0 })
     vim.keymap.set('n', '<C-n>', require('error-jump').next_error, { desc = '[E]rror [N]ext', buffer = 0 })
     vim.keymap.set('n', '<C-p>', require('error-jump').next_error, { desc = '[E]rror [N]previous', buffer = 0 })

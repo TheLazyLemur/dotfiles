@@ -116,6 +116,12 @@ local plugins = {
         config = function()
         end
     },
+    {
+        source = "nvim-tree/nvim-tree.lua",
+        config = function ()
+            require("nvim-tree").setup()
+        end
+    },
 }
 
 for _, p in pairs(plugins) do
