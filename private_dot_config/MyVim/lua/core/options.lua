@@ -46,5 +46,10 @@ vim.opt.virtualedit = 'block'
 
 vim.cmd('filetype plugin indent on')
 vim.filetype.add({ extension = { templ = "templ" } })
+vim.filetype.add({
+  extension = {
+    ['http'] = 'http',
+  },
+})
 
 

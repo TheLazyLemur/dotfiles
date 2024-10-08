@@ -12,7 +12,7 @@ vim.keymap.set({ "n", "v" }, "<c-q>", function()
     end
 end)
 
-vim.keymap.set("n", "<leader><esc>", function() 
+vim.keymap.set("n", "<leader><esc>", function()
     if not mc.cursorsEnabled() then
         mc.enableCursors()
     elseif mc.hasCursors() then
@@ -38,3 +38,17 @@ vim.keymap.set('n', '<leader>B', function()
     dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
 end, { desc = 'Debug: Set Breakpoint' })
 
+local augroup = vim.api.nvim_create_augroup("MyVim-FT-Keymaps", { clear = true })
+local ft_keymaps = {
+    ["*.http"] = function()
+        vim.keymap.set("n", "<CR>", "<cmd>lua require('kulala').run()<cr>", { noremap = true, silent = true, buffer = 0 })
+    end,
+}
+
+for key, value in pairs(ft_keymaps) do
+    vim.api.nvim_create_autocmd("BufEnter", {
+        group = augroup,
+        pattern = key,
+        callback = value,
+    })
+end

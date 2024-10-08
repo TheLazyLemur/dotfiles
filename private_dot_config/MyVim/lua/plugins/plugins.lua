@@ -52,10 +52,8 @@ local plugins = {
                     'delve',
                 },
             }
-            ---@diagnostic disable-next-line: missing-fields
             dapui.setup {
                 icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
-                ---@diagnostic disable-next-line: missing-fields
                 controls = {
                     icons = {
                         pause = ' ',
@@ -103,6 +101,12 @@ local plugins = {
     {
         name = "error-jump",
         source = "Dr-42/error-jump.nvim",
+    },
+    {
+        source = "mistweaverco/kulala.nvim",
+        config = function()
+            require("kulala").setup()
+        end
     },
 }
 
