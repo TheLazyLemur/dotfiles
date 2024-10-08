@@ -25,6 +25,7 @@ require("mini.icons").mock_nvim_web_devicons()
 
 MiniDeps.add("echasnovski/mini.pick")
 require("mini.pick").setup()
+vim.ui.select = require("mini.pick").ui_select
 
 MiniDeps.add("echasnovski/mini.hipatterns")
 local hipatterns = require('mini.hipatterns')
