@@ -38,6 +38,17 @@ vim.keymap.set('n', '<leader>B', function()
     dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
 end, { desc = 'Debug: Set Breakpoint' })
 
+vim.keymap.set("n", "<C-t>", function()
+    require("menu").open("myvim")
+end, {})
+
+vim.keymap.set("n", "<RightMouse>", function()
+  vim.cmd.exec '"normal! \\<RightMouse>"'
+
+  local options = vim.bo.ft == "NvimTree" and "nvimtree" or "myvim"
+  require("menu").open(options, { mouse = true })
+end, {})
+
 local augroup = vim.api.nvim_create_augroup("MyVim-FT-Keymaps", { clear = true })
 local ft_keymaps = {
     ["*.http"] = function()

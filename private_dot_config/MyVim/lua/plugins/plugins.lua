@@ -108,6 +108,14 @@ local plugins = {
             require("kulala").setup()
         end
     },
+    {
+        source = "nvchad/menu",
+        depends = {
+            "nvchad/volt",
+        },
+        config = function()
+        end
+    },
 }
 
 for _, p in pairs(plugins) do
