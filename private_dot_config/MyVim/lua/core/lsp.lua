@@ -16,8 +16,8 @@ for _, server in ipairs(servers) do
 end
 
 MiniDeps.add({
-    source = "saghen/blink.cmp",
-    checkout = 'v0.*'
+  source = "saghen/blink.cmp",
+  checkout = 'v0.*'
 })
 require("blink.cmp").setup({
   keymap = {
