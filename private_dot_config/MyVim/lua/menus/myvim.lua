@@ -26,6 +26,11 @@ return {
         hl = "Exblue",
         items = "lsp",
     },
+    {
+        name = "Debug",
+        hl = "Exblue",
+        items = "debug",
+    },
     { name = "separator" },
     {
         name = "Bookmark file",
