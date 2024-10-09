@@ -29,6 +29,10 @@ local plugins = {
         end
     },
     {
+        name = "rose-pine",
+        source = "rose-pine/neovim",
+    },
+    {
         source = 'mfussenegger/nvim-dap',
         depends = {
             "rcarriga/nvim-dap-ui",
@@ -122,7 +126,7 @@ local plugins = {
     },
     {
         source = "nvim-tree/nvim-tree.lua",
-        config = function ()
+        config = function()
             require("nvim-tree").setup()
         end
     },
