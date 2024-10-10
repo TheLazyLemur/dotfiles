@@ -7,7 +7,7 @@ return {
     { name = "separator" },
     {
         name = " Step Continue",
-        cmd = require("dap").step_into,
+        cmd = require("dap").continue,
         rtxt = "<F5>",
     },
     {

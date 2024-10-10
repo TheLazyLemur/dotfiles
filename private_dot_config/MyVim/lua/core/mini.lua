@@ -23,6 +23,9 @@ MiniDeps.add("echasnovski/mini.icons")
 require("mini.icons").setup()
 require("mini.icons").mock_nvim_web_devicons()
 
+MiniDeps.add("echasnovski/mini.extra")
+require("mini.extra").setup()
+
 MiniDeps.add("echasnovski/mini.pick")
 require("mini.pick").setup()
 vim.ui.select = require("mini.pick").ui_select
