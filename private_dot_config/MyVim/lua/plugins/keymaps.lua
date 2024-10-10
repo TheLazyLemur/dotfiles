@@ -43,10 +43,10 @@ vim.keymap.set("n", "<C-t>", function()
 end, {})
 
 vim.keymap.set("n", "<RightMouse>", function()
-  vim.cmd.exec '"normal! \\<RightMouse>"'
+    vim.cmd.exec '"normal! \\<RightMouse>"'
 
-  local options = vim.bo.ft == "NvimTree" and "nvimtree" or "myvim"
-  require("menu").open(options, { mouse = true })
+    local options = vim.bo.ft == "NvimTree" and "nvimtree" or "myvim"
+    require("menu").open(options, { mouse = true })
 end, {})
 
 local augroup = vim.api.nvim_create_augroup("MyVim-FT-Keymaps", { clear = true })
