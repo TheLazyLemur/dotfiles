@@ -22,4 +22,6 @@ end)
 require("builtin.bookmarks").setup()
 require("builtin.compile")
 
+require("builtin.spear").setup()
+
 require("builtin.keymaps")
