@@ -39,6 +39,16 @@ vim.keymap.set('n', '<leader>B', function()
 end, { desc = 'Debug: Set Breakpoint' })
 
 vim.keymap.set("n", "<C-t>", function()
+    local cursor_pos = vim.api.nvim_win_get_cursor(0)
+    local buf = vim.api.nvim_get_current_buf()
+    local win = vim.api.nvim_get_current_win()
+
+    BEFORE_MENU = {
+        c_pos = cursor_pos,
+        buf = buf,
+        win = win,
+    }
+
     require("menu").open("myvim")
 end, {})
 

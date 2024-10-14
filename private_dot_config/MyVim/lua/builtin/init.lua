@@ -1,4 +1,9 @@
-require("builtin.termmy").setup(function()
+local termmy = require("builtin.termmy")
+local bookmarks = require("builtin.bookmarks")
+local spear = require("builtin.spear")
+local uiselect = require("builtin.uiselect")
+
+termmy.setup(function()
     local total_width = vim.o.columns
     local total_height = vim.o.lines
 
@@ -19,9 +24,8 @@ require("builtin.termmy").setup(function()
     }
 end)
 
-require("builtin.bookmarks").setup()
-require("builtin.compile")
-
-require("builtin.spear").setup()
+bookmarks.setup()
+spear.setup()
+uiselect.setup()
 
 require("builtin.keymaps")

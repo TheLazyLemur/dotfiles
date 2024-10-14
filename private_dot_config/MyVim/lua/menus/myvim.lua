@@ -1,9 +1,11 @@
+local termmy = require("builtin.termmy")
+local bookmarks = require("builtin.bookmarks")
+
 return {
     {
         name = "Toggle Terminal",
         hl = "Exred",
         cmd = function()
-            local termmy = require("builtin.termmy")
             termmy.toggle(false, vim.fn.expand('%:p:h') .. '/')
         end,
     },
@@ -36,14 +38,14 @@ return {
         name = "Bookmark file",
         rtxt = "<leader>ba",
         cmd = function()
-            require("builtin.bookmarks").bookmark_file()
+            bookmarks.bookmark_file()
         end,
     },
     {
         name = "Open Bookmarks",
         rtxt = "<leader>bs",
         cmd = function()
-            require("builtin.bookmarks").show_selection_ui()
+            bookmarks.show_selection_ui()
         end,
     },
     { name = "separator" },

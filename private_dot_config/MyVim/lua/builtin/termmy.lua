@@ -1,4 +1,4 @@
-TERMMY = {}
+local TERMMY = {}
 
 TERMMY.toggle = function(split, dir)
     if not dir or dir == "" then

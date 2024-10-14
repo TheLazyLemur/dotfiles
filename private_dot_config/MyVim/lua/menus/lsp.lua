@@ -1,38 +1,52 @@
 return {
     {
         name = "Definition",
-        cmd = vim.lsp.buf.definition,
+        cmd = function()
+            vim.lsp.buf.definition()
+        end,
         rtxt = "<leader>gd",
     },
     {
         name = "Implementation",
-        cmd = vim.lsp.buf.implementation,
+        cmd = function()
+            vim.lsp.buf.implementation()
+        end,
         rtxt = "<leader>gi",
     },
     {
         name = "References",
-        cmd = vim.lsp.buf.references,
+        cmd = function()
+            vim.lsp.buf.references()
+        end,
     },
     { name = "separator" },
     {
         name = "Hover",
-        cmd = vim.lsp.buf.hover,
+        cmd = function()
+            vim.lsp.buf.hover()
+        end,
         rtxt = "K",
     },
     {
         name = "Code Actions",
-        cmd = vim.lsp.buf.code_action,
+        cmd = function()
+            vim.lsp.buf.code_action()
+        end,
         rtxt = "<leader>ca",
     },
     { name = "separator" },
     {
         name = "Rename",
-        cmd = vim.lsp.buf.rename,
+        cmd = function()
+            vim.lsp.buf.rename()
+        end,
         rtxt = "<leader>rn",
     },
     {
         name = "Format",
-        cmd = vim.lsp.buf.format,
+        cmd = function()
+            vim.lsp.buf.format()
+        end,
         rtxt = "<leader>f",
     },
 }

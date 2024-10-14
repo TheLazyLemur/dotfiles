@@ -1,4 +1,4 @@
-SPEAR = {
+local SPEAR = {
     entries = {},
 }
 
@@ -65,15 +65,41 @@ local function navigate_to_buffer_line(buf_number, line_number)
     end
 end
 
-SPEAR.pick = function()
+SPEAR.pick = function(type)
+    local select_cb = function(choice)
+        vim.schedule(function()
+            jump_to_file(choice)
+        end)
+    end
+
+    local delete_cb = function(choice)
+        local index = -1
+        local t = SPEAR.entries[vim.fn.getcwd()]
+
+        for i, value in ipairs(t) do
+            if value.text == choice.text then
+                index = i
+            end
+        end
+
+        print("HERE DELETE")
+        SPEAR.entries[vim.fn.getcwd()] = t
+        table.remove(SPEAR.entries[vim.fn.getcwd()], index)
+    end
+
+    local cb = nil
+    if type == nil or type == "select" then
+        cb = select_cb
+    end
+
+    if type == "delete" then
+        cb = delete_cb
+    end
+
     MiniPick.start({
         source = {
             items = SPEAR.entries[vim.fn.getcwd()],
-            choose = function(choice)
-                vim.schedule(function()
-                    jump_to_file(choice)
-                end)
-            end,
+            choose = cb,
             preview = function(buf_nr, item)
                 cat_file_to_buffer(buf_nr, item.path)
                 vim.api.nvim_buf_add_highlight(buf_nr, -1, "TODO", item.line - 1, 0, -1)
@@ -115,7 +141,7 @@ SPEAR.throw = function()
     local line, col = table.unpack(vim.api.nvim_win_get_cursor(0))
 
     table.insert(SPEAR.entries[vim.fn.getcwd()], {
-        text = relative_path .. "|" .. tostring(line) .. "|" .. tostring(col) .. "|",
+        text = relative_path .. "| " .. tostring(line) .. " | " .. tostring(col) .. " |",
         path = relative_path,
         line = line,
         col = col,
@@ -135,10 +161,6 @@ SPEAR.setup = function()
     if SPEAR.entries[vim.fn.getcwd()] == nil then
         SPEAR.entries[vim.fn.getcwd()] = {}
     end
-
-
-    vim.keymap.set("n", "<leader>mm", SPEAR.throw)
-    vim.keymap.set("n", "<leader>ms", SPEAR.pick)
 end
 
 return SPEAR
