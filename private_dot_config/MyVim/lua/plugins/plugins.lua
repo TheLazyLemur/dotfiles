@@ -80,16 +80,16 @@ local plugins = {
             require('dap-go').setup()
         end,
     },
-    {
-        source = "nvim-tree/nvim-tree.lua",
-        config = function()
-            require("nvim-tree").setup({
-                update_focused_file = {
-                    enable = true,
-                }
-            })
-        end
-    },
+    -- {
+    --     source = "nvim-tree/nvim-tree.lua",
+    --     config = function()
+    --         require("nvim-tree").setup({
+    --             update_focused_file = {
+    --                 enable = true,
+    --             }
+    --         })
+    --     end
+    -- },
     {
         source = 'nvim-treesitter/nvim-treesitter',
         depends = {
@@ -121,14 +121,6 @@ local plugins = {
         depends = {
             "nvchad/volt",
         },
-        config = function()
-        end
-    },
-    {
-        source = "nvim-tree/nvim-tree.lua",
-        config = function()
-            require("nvim-tree").setup()
-        end
     },
     {
         source = "nvimtools/none-ls.nvim",
@@ -147,6 +139,19 @@ local plugins = {
                     null_ls.builtins.diagnostics.golangci_lint,
                 },
             })
+        end
+    },
+    {
+        source = "folke/trouble.nvim",
+        cmd = "Trouble",
+        config = function()
+            require("trouble").setup()
+            vim.keymap.set("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>")
+            vim.keymap.set("n", "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>")
+            vim.keymap.set("n", "<leader>cs", "<cmd>Trouble symbols toggle focus=false<cr>")
+            vim.keymap.set("n", "<leader>cl", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>")
+            vim.keymap.set("n", "<leader>xL", "<cmd>Trouble loclist toggle<cr>")
+            vim.keymap.set("n", "<leader>xQ", "<cmd>Trouble qflist toggle<cr>")
         end
     },
 }

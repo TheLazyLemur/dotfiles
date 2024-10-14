@@ -20,7 +20,7 @@ termmy.setup(function()
         width = win_width,
         height = win_height,
         style = 'minimal',
-        border = 'single',
+        border = 'rounded',
     }
 end)
 
