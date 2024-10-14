@@ -130,6 +130,25 @@ local plugins = {
             require("nvim-tree").setup()
         end
     },
+    {
+        source = "nvimtools/none-ls.nvim",
+        depends = {
+            "nvim-lua/plenary.nvim",
+        },
+        config = function()
+            local null_ls = require("null-ls")
+            null_ls.setup({
+                sources = {
+                    null_ls.builtins.formatting.gofumpt,
+                    null_ls.builtins.formatting.goimports_reviser,
+                    null_ls.builtins.formatting.golines,
+                    null_ls.builtins.code_actions.impl,
+                    null_ls.builtins.code_actions.refactoring,
+                    null_ls.builtins.diagnostics.golangci_lint,
+                },
+            })
+        end
+    },
 }
 
 for _, p in pairs(plugins) do
