@@ -4,14 +4,14 @@ return {
         cmd = function()
             vim.lsp.buf.definition()
         end,
-        rtxt = "<leader>gd",
+        rtxt = "gd",
     },
     {
         name = "Implementation",
         cmd = function()
             vim.lsp.buf.implementation()
         end,
-        rtxt = "<leader>gi",
+        rtxt = "gi",
     },
     {
         name = "References",

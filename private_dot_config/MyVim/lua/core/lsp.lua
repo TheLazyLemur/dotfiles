@@ -9,6 +9,7 @@ require("mason").setup()
 MiniDeps.add("neovim/nvim-lspconfig")
 local lspconfig = require("lspconfig")
 
+
 local servers = { "gopls", "templ", "lua_ls" }
 
 for _, server in ipairs(servers) do
@@ -21,10 +22,10 @@ end
 
 MiniDeps.add({
     source = "saghen/blink.cmp",
-    checkout = 'v0.*',
     depends = {
         "rafamadriz/friendly-snippets"
-    }
+    },
+    hooks = { post_checkout = function() vim.cmd('!cargo build --release') end },
 })
 require("blink.cmp").setup({
     keymap = {

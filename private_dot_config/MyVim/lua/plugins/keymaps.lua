@@ -38,34 +38,27 @@ vim.keymap.set('n', '<leader>B', function()
     dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
 end, { desc = 'Debug: Set Breakpoint' })
 
-vim.keymap.set("n", "<C-t>", function()
-    local cursor_pos = vim.api.nvim_win_get_cursor(0)
-    local buf = vim.api.nvim_get_current_buf()
-    local win = vim.api.nvim_get_current_win()
+vim.keymap.set("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>")
+vim.keymap.set("n", "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>")
+vim.keymap.set("n", "<leader>cs", "<cmd>Trouble symbols toggle focus=false<cr>")
+vim.keymap.set("n", "<leader>cl", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>")
+vim.keymap.set("n", "<leader>xL", "<cmd>Trouble loclist toggle<cr>")
+vim.keymap.set("n", "<leader>xQ", "<cmd>Trouble qflist toggle<cr>")
 
-    BEFORE_MENU = {
-        c_pos = cursor_pos,
-        buf = buf,
-        win = win,
-    }
+vim.keymap.set("n", "<C-t>", function() require("menu").open("myvim") end)
 
-    require("menu").open("myvim")
-end, {})
-
-vim.keymap.set("n", "<RightMouse>", function()
-    vim.cmd.exec '"normal! \\<RightMouse>"'
-
-    local options = vim.bo.ft == "NvimTree" and "nvimtree" or "myvim"
-    require("menu").open(options, { mouse = true })
-end, {})
-
-local augroup = vim.api.nvim_create_augroup("MyVim-FT-Keymaps", { clear = true })
 local ft_keymaps = {
     ["*.http"] = function()
         vim.keymap.set("n", "<CR>", "<cmd>lua require('kulala').run()<cr>", { noremap = true, silent = true, buffer = 0 })
     end,
+    ["*test.go"] = function()
+        vim.keymap.set("n", "<leader>tt", ":GoTestFile -v -F<CR>", { noremap = true, silent = true, buffer = 0 })
+        vim.keymap.set("n", "<leader>tf", ":GoTestFunc -v -F<CR>", { noremap = true, silent = true, buffer = 0 })
+        vim.keymap.set("n", "<leader>tc", ":GoTestSubCase -v -F<CR>", { noremap = true, silent = true, buffer = 0 })
+    end
 }
 
+local augroup = vim.api.nvim_create_augroup("MyVim-FT-Plugin-Keymaps", { clear = true })
 for key, value in pairs(ft_keymaps) do
     vim.api.nvim_create_autocmd("BufEnter", {
         group = augroup,
