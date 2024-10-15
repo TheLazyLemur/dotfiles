@@ -46,9 +46,9 @@ local plugins = {
         },
         lazy = true,
         config = function()
-            vim.fn.sign_define('DapBreakpoint', { text = " ", texthl = 'error', linehl = 'error', numhl = 'error' })
+            vim.fn.sign_define('DapBreakpoint', { text = " ", texthl = 'error', linehl = 'error', numhl = 'error' })
             vim.fn.sign_define('DapBreakpointCondition',
-                { text = " ", texthl = 'warn', linehl = 'warn', numhl = 'warn' })
+                { text = " ", texthl = 'warn', linehl = 'warn', numhl = 'warn' })
 
             local dap = require("dap")
             local dapui = require("dapui")
@@ -66,14 +66,14 @@ local plugins = {
                 controls = {
                     icons = {
                         pause = ' ',
-                        play = '',
-                        step_into = '󰌑 ',
-                        step_over = '⏭',
-                        step_out = '⏮',
-                        step_back = 'b',
-                        run_last = '▶▶',
+                        play = ' ',
+                        step_over = ' ',
+                        step_into = '󰆹 ',
+                        step_out = '󰆸 ',
+                        step_back = ' ',
+                        run_last = '󰑖 ',
                         terminate = ' ',
-                        disconnect = '⏏',
+                        disconnect = ' ',
                     },
                 },
             }
