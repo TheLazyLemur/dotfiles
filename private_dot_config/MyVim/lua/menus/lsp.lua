@@ -18,6 +18,7 @@ return {
         cmd = function()
             vim.lsp.buf.references()
         end,
+        rtxt = "gr",
     },
     { name = "separator" },
     {

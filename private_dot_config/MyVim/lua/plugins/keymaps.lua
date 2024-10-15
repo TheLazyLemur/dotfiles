@@ -1,9 +1,15 @@
+local dap = require("dap")
+local dapui = require("dapui")
+local mc = require("multicursor-nvim")
+local menu = require("menu")
+local kulala = require("kulala")
+
 vim.keymap.set("n", "-", ":Oil<cr>")
 
-local mc = require("multicursor-nvim")
 vim.keymap.set({ "n", "v" }, "<c-n>", function() mc.addCursor("*") end)
 vim.keymap.set({ "n", "v" }, "<c-s>", function() mc.skipCursor("*") end)
 vim.keymap.set({ "n", "v" }, "<leader>x", mc.deleteCursor)
+
 vim.keymap.set({ "n", "v" }, "<c-q>", function()
     if mc.cursorsEnabled() then
         mc.disableCursors()
@@ -24,9 +30,6 @@ vim.keymap.set("v", "I", mc.insertVisual)
 vim.keymap.set("v", "A", mc.appendVisual)
 vim.keymap.set("v", "M", mc.matchCursors)
 
-local dap = require 'dap'
-local dapui = require 'dapui'
-
 vim.keymap.set('n', '<F5>', dap.continue)
 vim.keymap.set('n', '<F1>', dap.step_into)
 vim.keymap.set('n', '<F2>', dap.step_over)
@@ -45,11 +48,11 @@ vim.keymap.set("n", "<leader>cl", "<cmd>Trouble lsp toggle focus=false win.posit
 vim.keymap.set("n", "<leader>xL", "<cmd>Trouble loclist toggle<cr>")
 vim.keymap.set("n", "<leader>xQ", "<cmd>Trouble qflist toggle<cr>")
 
-vim.keymap.set("n", "<C-t>", function() require("menu").open("myvim") end)
+vim.keymap.set("n", "<C-t>", function() menu.open("myvim") end)
 
 local ft_keymaps = {
     ["*.http"] = function()
-        vim.keymap.set("n", "<CR>", "<cmd>lua require('kulala').run()<cr>", { noremap = true, silent = true, buffer = 0 })
+        vim.keymap.set("n", "<CR>", kulala.run, { noremap = true, silent = true, buffer = 0 })
     end,
     ["*test.go"] = function()
         vim.keymap.set("n", "<leader>tt", ":GoTestFile -v -F<CR>", { noremap = true, silent = true, buffer = 0 })
