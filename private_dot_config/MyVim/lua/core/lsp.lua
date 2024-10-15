@@ -65,13 +65,32 @@ later(function()
             use_nvim_cmp_as_default = true,
         },
     })
-
-    local augroup = vim.api.nvim_create_augroup("MyVim-FT-Format", { clear = true })
-    vim.api.nvim_create_autocmd("BufWritePost", {
-        pattern = "*",
-        callback = function()
-            vim.lsp.buf.format({ async = true })
-        end,
-        group = augroup,
-    })
 end)
+
+local function do_for_attached(cb)
+    local ok, clients = pcall(vim.lsp.get_clients)
+    if not ok then return end
+
+    for _, client in pairs(clients) do
+        if vim.lsp.buf_is_attached(0, client.id) then
+            ok = pcall(cb)
+            if not ok then error("could not format") end
+            return
+        end
+    end
+end
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+    group = vim.api.nvim_create_augroup("MyVim-LSP-Format", { clear = true }),
+    callback = function() do_for_attached(vim.lsp.buf.format) end,
+})
+
+vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+    group = vim.api.nvim_create_augroup("user-lsp-hold", { clear = true }),
+    callback = function() do_for_attached(vim.lsp.buf.document_highlight) end,
+})
+
+vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+    group = vim.api.nvim_create_augroup("user-lsp-moved", { clear = true }),
+    callback = function() do_for_attached(vim.lsp.buf.clear_references) end,
+})
