@@ -26,18 +26,21 @@ vim.keymap.set("n", "<leader><leader>", ":Pick buffers<cr>")
 
 vim.keymap.set("t", "<leader><esc>", [[<C-\><C-n>]])
 
+local lsp_keymaps = function(args)
+    local bufnr = args.buf
+    local opts = { noremap = true, silent = true, buffer = bufnr }
+
+    vim.keymap.set("n", "gd", ":Pick lsp scope='definition'<CR>", opts)
+    vim.keymap.set("n", "gi", ":Pick lsp scope='implementation'<CR>", opts)
+    vim.keymap.set("n", "gr", ":Pick lsp scope='references'<CR>", opts)
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+    vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, opts)
+end
+
 local augroup = vim.api.nvim_create_augroup("MyVim-FT-Builtin-Keymaps", { clear = true })
 vim.api.nvim_create_autocmd("LspAttach", {
     group = augroup,
-    callback = function(args)
-        local bufnr = args.buf
-        local opts = { noremap = true, silent = true, buffer = bufnr }
-        vim.keymap.set("n", "gd", ":Pick lsp scope='definition'<CR>", opts)
-        vim.keymap.set("n", "gi", ":Pick lsp scope='implementation'<CR>", opts)
-        vim.keymap.set("n", "gr", ":Pick lsp scope='references'<CR>", opts)
-        vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-        vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-        vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-        vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, opts)
-    end,
+    callback = lsp_keymaps,
 })

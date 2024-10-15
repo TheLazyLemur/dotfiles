@@ -51,14 +51,20 @@ vim.keymap.set("n", "<leader>xQ", "<cmd>Trouble qflist toggle<cr>")
 vim.keymap.set("n", "<C-t>", function() menu.open("myvim") end)
 
 local ft_keymaps = {
-    ["*.http"] = function()
-        vim.keymap.set("n", "<CR>", kulala.run, { noremap = true, silent = true, buffer = 0 })
+    ["*.http"] = function(args)
+        local bufnr = args.buf
+        local opts = { noremap = true, silent = true, buffer = bufnr }
+
+        vim.keymap.set("n", "<CR>", kulala.run, opts)
     end,
-    ["*test.go"] = function()
-        vim.keymap.set("n", "<leader>tt", ":GoTestFile -v -F<CR>", { noremap = true, silent = true, buffer = 0 })
-        vim.keymap.set("n", "<leader>tf", ":GoTestFunc -v -F<CR>", { noremap = true, silent = true, buffer = 0 })
-        vim.keymap.set("n", "<leader>tc", ":GoTestSubCase -v -F<CR>", { noremap = true, silent = true, buffer = 0 })
-    end
+    ["*test.go"] = function(args)
+        local bufnr = args.buf
+        local opts = { noremap = true, silent = true, buffer = bufnr }
+
+        vim.keymap.set("n", "<leader>tt", ":GoTestFile -v -F<CR>", opts)
+        vim.keymap.set("n", "<leader>tf", ":GoTestFunc -v -F<CR>", opts)
+        vim.keymap.set("n", "<leader>tc", ":GoTestSubCase -v -F<CR>", opts)
+    end,
 }
 
 local augroup = vim.api.nvim_create_augroup("MyVim-FT-Plugin-Keymaps", { clear = true })
