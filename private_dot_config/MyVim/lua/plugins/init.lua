@@ -28,13 +28,13 @@ local plugins = {
     {
         name = "catppuccin",
         source = "catppuccin/nvim",
-        config = function()
-            vim.cmd("colorscheme catppuccin")
-        end
     },
     {
         name = "rose-pine",
         source = "rose-pine/neovim",
+        config = function()
+            vim.cmd("colorscheme rose-pine")
+        end
     },
     {
         source = 'mfussenegger/nvim-dap',
