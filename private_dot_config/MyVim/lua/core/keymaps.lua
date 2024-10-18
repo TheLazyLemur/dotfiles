@@ -30,9 +30,9 @@ local lsp_keymaps = function(args)
     local bufnr = args.buf
     local opts = { noremap = true, silent = true, buffer = bufnr }
 
-    vim.keymap.set("n", "gd", ":Pick lsp scope='definition'<CR>", opts)
-    vim.keymap.set("n", "gi", ":Pick lsp scope='implementation'<CR>", opts)
-    vim.keymap.set("n", "gr", ":Pick lsp scope='references'<CR>", opts)
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+    vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
     vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
     vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)

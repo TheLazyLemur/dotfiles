@@ -13,7 +13,7 @@ later(function()
     local lspconfig = require("lspconfig")
 
 
-    local servers = { "gopls", "templ", "lua_ls" }
+    local servers = { "gopls", "templ", "lua_ls", "denols" }
 
     for _, server in ipairs(servers) do
         lspconfig[server].setup {
@@ -86,11 +86,13 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+    pattern = "*.go",
     group = vim.api.nvim_create_augroup("user-lsp-hold", { clear = true }),
     callback = function() do_for_attached(vim.lsp.buf.document_highlight) end,
 })
 
 vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+    pattern = "*.go",
     group = vim.api.nvim_create_augroup("user-lsp-moved", { clear = true }),
     callback = function() do_for_attached(vim.lsp.buf.clear_references) end,
 })

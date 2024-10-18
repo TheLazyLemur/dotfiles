@@ -46,9 +46,19 @@ local plugins = {
         },
         lazy = true,
         config = function()
-            vim.fn.sign_define('DapBreakpoint', { text = " ", texthl = 'error', linehl = 'error', numhl = 'error' })
-            vim.fn.sign_define('DapBreakpointCondition',
-                { text = " ", texthl = 'warn', linehl = 'warn', numhl = 'warn' })
+            vim.fn.sign_define('DapBreakpoint', {
+                text = " ",
+                texthl = 'NvimString',
+                linehl = 'NvimString',
+                numhl = 'NvimString'
+            })
+
+            vim.fn.sign_define('DapBreakpointCondition', {
+                text = " ",
+                texthl = 'SpecialKey',
+                linehl = 'SpecialKey',
+                numhl = 'SpecialKey'
+            })
 
             local dap = require("dap")
             local dapui = require("dapui")
@@ -84,17 +94,6 @@ local plugins = {
 
             require('dap-go').setup()
         end,
-    },
-    {
-        source = "nvim-tree/nvim-tree.lua",
-        lazy = true,
-        config = function()
-            require("nvim-tree").setup({
-                update_focused_file = {
-                    enable = true,
-                }
-            })
-        end
     },
     {
         source = 'nvim-treesitter/nvim-treesitter',
