@@ -86,17 +86,6 @@ local plugins = {
         end,
     },
     {
-        source = "nvim-tree/nvim-tree.lua",
-        lazy = true,
-        config = function()
-            require("nvim-tree").setup({
-                update_focused_file = {
-                    enable = true,
-                }
-            })
-        end
-    },
-    {
         source = 'nvim-treesitter/nvim-treesitter',
         depends = {
             "nvim-treesitter/nvim-treesitter-context",
