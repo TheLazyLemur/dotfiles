@@ -26,6 +26,8 @@ vim.keymap.set("n", "<leader><leader>", ":Pick buffers<cr>")
 
 vim.keymap.set("t", "<leader><esc>", [[<C-\><C-n>]])
 
+vim.keymap.set({ "n", "i" }, "<leader>/", ":ReferencePoint<cr>")
+
 local lsp_keymaps = function(args)
     local bufnr = args.buf
     local opts = { noremap = true, silent = true, buffer = bufnr }
