@@ -31,11 +31,7 @@ later(function()
         hooks = { post_checkout = function() vim.cmd('!cargo build --release') end },
     })
     require("blink.cmp").setup({
-        keymap = {
-            accept = '<C-y>',
-            select_prev = { '<C-p>' },
-            select_next = { '<C-n>' },
-        },
+        keymap = 'default',
         trigger = {
             signature_help = {
                 enabled = true,
