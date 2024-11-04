@@ -13,7 +13,7 @@ later(function()
     local lspconfig = require("lspconfig")
 
 
-    local servers = { "gopls", "templ", "lua_ls", "denols" }
+    local servers = { "gopls", "templ", "lua_ls", "denols", "zls" }
 
     for _, server in ipairs(servers) do
         lspconfig[server].setup {

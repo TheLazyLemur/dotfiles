@@ -1,44 +1,39 @@
-local TERMMY = {}
+local TERMMY = {
+    bufs = {},
+}
 
-TERMMY.toggle = function(split, dir)
+TERMMY.toggle = function(dir, n)
+    if n == nil then
+        n = "default"
+    end
+
     if not dir or dir == "" then
         dir = vim.fn.getcwd()
     end
 
-    if vim.api.nvim_get_current_buf() == TERMMY.buf then
-        vim.api.nvim_win_close(TERMMY.win, true)
-        if TERMMY.split ~= split then
-            TERMMY.toggle(split)
+    for _, value in pairs(TERMMY.bufs) do
+        if vim.api.nvim_get_current_buf() == value then
+            vim.api.nvim_win_close(TERMMY.win, true)
+            return
         end
-        return
     end
 
-    local is_new = TERMMY.buf == nil or not vim.api.nvim_buf_is_valid(TERMMY.buf)
 
-    TERMMY.split = split
+    local is_new = TERMMY.bufs[n] == nil or not vim.api.nvim_buf_is_valid(TERMMY.bufs[n])
 
-    if not split then
-        local win_config = TERMMY.config_func()
+    local win_config = TERMMY.config_func()
 
-        if is_new then
-            TERMMY.buf = vim.api.nvim_create_buf(false, true)
-        end
-
-        TERMMY.win = vim.api.nvim_open_win(TERMMY.buf, true, win_config)
+    if is_new then
+        TERMMY.bufs[n] = vim.api.nvim_create_buf(false, true)
     end
 
-    if split then
-        vim.cmd("split")
+    TERMMY.win = vim.api.nvim_open_win(TERMMY.bufs[n], true, win_config)
 
-        local temp_buf = vim.api.nvim_create_buf(false, true)
-        TERMMY.win = vim.api.nvim_get_current_win()
-        vim.api.nvim_win_set_buf(TERMMY.win, temp_buf)
-    end
 
     if is_new then
         vim.fn.termopen("zsh", { cwd = dir })
     else
-        vim.api.nvim_win_set_buf(TERMMY.win, TERMMY.buf)
+        vim.api.nvim_win_set_buf(TERMMY.win, TERMMY.bufs[n])
     end
 
     vim.cmd("startinsert")
