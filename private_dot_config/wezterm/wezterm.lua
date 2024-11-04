@@ -1,9 +1,10 @@
 local wezterm = require 'wezterm';
 local act = wezterm.action
 
-local config = wezterm.config_builder()
+local smart_splits = wezterm.plugin.require('https://github.com/mrjones2014/smart-splits.nvim')
 
-local M = { next_dir = "Right" }
+local config = wezterm.config_builder()
+config.color_scheme = 'Rosé Pine Moon (Gogh)'
 
 config.key_tables = {
     resize_font = {
@@ -25,23 +26,21 @@ config.key_tables = {
 
 config.keys = {
     {
-        key = "s",
-        mods = "LEADER",
+        key = "b",
+        mods = "LEADER|CTRL",
         action = wezterm.action_callback(function(window, pane)
-            pane:split { direction = M.next_dir }
-            if M.next_dir == "Right" then
-                M.next_dir = "Bottom"
-            else
-                M.next_dir = "Right"
-            end
+            pane:split { direction = "Bottom" }
+        end),
+    },
+    {
+        key = "r",
+        mods = "LEADER|CTRL",
+        action = wezterm.action_callback(function(window, pane)
+            pane:split { direction = "Right" }
         end),
     },
     { key = 'q',        mods = "LEADER", action = act.CloseCurrentPane({ confirm = false }) },
     { key = 'Enter',    mods = "LEADER", action = act.TogglePaneZoomState },
-    { key = 'k',        mods = "LEADER", action = act.ActivatePaneDirection('Up') },
-    { key = 'j',        mods = "LEADER", action = act.ActivatePaneDirection('Down') },
-    { key = 'h',        mods = "LEADER", action = act.ActivatePaneDirection('Left') },
-    { key = 'l',        mods = "LEADER", action = act.ActivatePaneDirection('Right') },
     { key = 'u',        mods = 'LEADER', action = act.ScrollByLine(-4) },
     { key = 'd',        mods = 'LEADER', action = act.ScrollByLine(5) },
     { key = 'PageUp',   mods = 'NONE',   action = act.ScrollByPage(-0.75) },
@@ -56,11 +55,23 @@ config.keys = {
         }),
     },
     {
-        key = 'w',
+        key = 'p',
         mods = 'LEADER',
-        action = wezterm.action.ShowLauncherArgs { flags = 'FUZZY|WORKSPACES' },
+        action = act.ActivateKeyTable({
+            name = 'resize_pane',
+            one_shot = false,
+            timemout_miliseconds = 1000,
+        }),
     },
 }
+
+smart_splits.apply_to_config(config, {
+    direction_keys = { 'h', 'j', 'k', 'l' },
+    modifiers = {
+        move = 'CTRL',   -- modifier to use for pane movement, e.g. CTRL+h to move left
+        resize = 'META', -- modifier to use for pane resize, e.g. META+h to resize to the left
+    },
+})
 
 config.font = wezterm.font 'JetBrains Mono'
 config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 1000 }
