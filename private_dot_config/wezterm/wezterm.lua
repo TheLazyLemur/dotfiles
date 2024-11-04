@@ -1,28 +1,8 @@
 local wezterm = require 'wezterm';
 local act = wezterm.action
 
-local smart_splits = wezterm.plugin.require('https://github.com/mrjones2014/smart-splits.nvim')
-
 local config = wezterm.config_builder()
 config.color_scheme = 'Rosé Pine Moon (Gogh)'
-
-config.key_tables = {
-    resize_font = {
-        { key = 'k',      action = act.IncreaseFontSize },
-        { key = 'j',      action = act.DecreaseFontSize },
-        { key = 'r',      action = act.ResetFontSize },
-        { key = 'Escape', action = 'PopKeyTable' },
-        { key = 'q',      action = 'PopKeyTable' },
-    },
-    resize_pane = {
-        { key = 'k',      action = act.AdjustPaneSize({ 'Up', 1 }) },
-        { key = 'j',      action = act.AdjustPaneSize({ 'Down', 1 }) },
-        { key = 'h',      action = act.AdjustPaneSize({ 'Left', 1 }) },
-        { key = 'l',      action = act.AdjustPaneSize({ 'Right', 1 }) },
-        { key = 'Escape', action = 'PopKeyTable' },
-        { key = 'q',      action = 'PopKeyTable' },
-    },
-}
 
 config.keys = {
     {
@@ -45,33 +25,7 @@ config.keys = {
     { key = 'd',        mods = 'LEADER', action = act.ScrollByLine(5) },
     { key = 'PageUp',   mods = 'NONE',   action = act.ScrollByPage(-0.75) },
     { key = 'PageDown', mods = 'NONE',   action = act.ScrollByPage(0.75) },
-    {
-        key = 'f',
-        mods = 'LEADER',
-        action = act.ActivateKeyTable({
-            name = 'resize_font',
-            one_shot = false,
-            timemout_miliseconds = 1000,
-        }),
-    },
-    {
-        key = 'p',
-        mods = 'LEADER',
-        action = act.ActivateKeyTable({
-            name = 'resize_pane',
-            one_shot = false,
-            timemout_miliseconds = 1000,
-        }),
-    },
 }
-
-smart_splits.apply_to_config(config, {
-    direction_keys = { 'h', 'j', 'k', 'l' },
-    modifiers = {
-        move = 'CTRL',   -- modifier to use for pane movement, e.g. CTRL+h to move left
-        resize = 'META', -- modifier to use for pane resize, e.g. META+h to resize to the left
-    },
-})
 
 config.font = wezterm.font 'JetBrains Mono'
 config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 1000 }
@@ -80,5 +34,8 @@ config.window_decorations = "RESIZE"
 config.window_background_opacity = 0.8
 config.macos_window_background_blur = 10
 config.font_size = 12
+
+require("tabs").setup(config)
+require("split").setup(config)
 
 return config
