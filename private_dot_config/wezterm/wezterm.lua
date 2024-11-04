@@ -6,15 +6,15 @@ config.color_scheme = 'Rosé Pine Moon (Gogh)'
 
 config.keys = {
     {
-        key = "b",
-        mods = "LEADER|CTRL",
+        key = "v",
+        mods = "LEADER",
         action = wezterm.action_callback(function(window, pane)
             pane:split { direction = "Bottom" }
         end),
     },
     {
-        key = "r",
-        mods = "LEADER|CTRL",
+        key = "s",
+        mods = "LEADER",
         action = wezterm.action_callback(function(window, pane)
             pane:split { direction = "Right" }
         end),
