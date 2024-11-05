@@ -16,6 +16,7 @@ require('mini.deps').setup({ path = { package = path_package } })
 local now, later = MiniDeps.now, MiniDeps.later
 
 now(require("mini.statusline").setup)
+now(require("mini.misc").setup)
 now(require("mini.basics").setup)
 now(require("mini.icons").setup)
 now(require("mini.icons").mock_nvim_web_devicons)

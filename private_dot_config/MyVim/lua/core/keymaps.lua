@@ -19,6 +19,8 @@ vim.keymap.set("n", "sv", "<C-w>v")
 
 vim.keymap.set("n", "<esc>", function() vim.cmd("nohlsearch") end)
 
+vim.keymap.set("n", "<leader>zz", require("mini.misc").zoom)
+
 vim.keymap.set("n", "<leader>sf", ":Pick files<cr>")
 vim.keymap.set("n", "<leader>sg", ":Pick grep_live<cr>")
 vim.keymap.set("n", "<leader>gs", ":Pick grep<cr>")
