@@ -1,5 +1,5 @@
 import = [
-    "~/.config/alacritty/themes/carbonfox.toml",
+    "~/.config/alacritty/themes/rosepine.toml",
     "~/.config/alacritty/font.toml"
 ]
 
