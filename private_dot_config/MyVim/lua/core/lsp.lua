@@ -43,7 +43,6 @@ later(function()
         windows = {
             autocomplete = {
                 border = 'rounded',
-                draw = 'reversed',
             },
             documentation = {
                 border = 'rounded',
