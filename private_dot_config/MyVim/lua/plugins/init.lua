@@ -146,6 +146,7 @@ local plugins = {
                     null_ls.builtins.formatting.golines,
                     null_ls.builtins.code_actions.impl,
                     null_ls.builtins.code_actions.refactoring,
+                    null_ls.builtins.formatting.uncrustify
                     -- null_ls.builtins.diagnostics.golangci_lint,
                 },
             })
@@ -180,6 +181,12 @@ local plugins = {
             vim.keymap.set('n', '<C-\\>', require('smart-splits').move_cursor_previous)
         end,
         lazy = true,
+    },
+    {
+        source = "catgoose/templ-goto-definition",
+        config = function()
+            require("templ-goto-definition").setup()
+        end
     },
 }
 
