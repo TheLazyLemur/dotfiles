@@ -1,7 +1,6 @@
 local termmy = require("builtin.termmy")
 local bookmarks = require("builtin.bookmarks")
 local spear = require("builtin.spear")
-local uiselect = require("builtin.uiselect")
 
 termmy.setup(function()
     local total_width = vim.o.columns
@@ -26,6 +25,5 @@ end)
 
 bookmarks.setup()
 spear.setup()
-uiselect.setup()
 
 require("builtin.keymaps")
