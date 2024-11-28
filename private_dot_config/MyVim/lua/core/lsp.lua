@@ -13,7 +13,7 @@ later(function()
     local lspconfig = require("lspconfig")
 
 
-    local servers = { "gopls", "templ", "lua_ls", "denols", "zls", "clangd" }
+    local servers = { "gopls", "templ", "lua_ls", "zls", "clangd" }
 
     for _, server in ipairs(servers) do
         lspconfig[server].setup {
@@ -30,36 +30,30 @@ later(function()
         },
         hooks = { post_checkout = function() vim.cmd('!cargo build --release') end },
     })
-    require("blink.cmp").setup({
-        keymap = 'default',
-        trigger = {
-            signature_help = {
+    require("blink.cmp").setup(
+        {
+            completion = {
+                menu = {
+                    border = 'rounded',
+                },
+                documentation = {
+                    auto_show = true,
+                    window = {
+                        border = 'rounded',
+                    },
+                },
+            },
+            signature = {
                 enabled = true,
-                blocked_trigger_characters = {},
-                blocked_retrigger_characters = {},
-                show_on_insert_on_trigger_character = true,
+                window = {
+                    border = 'rounded',
+                },
             },
-        },
-        windows = {
-            autocomplete = {
-                border = 'rounded',
+            appearance = {
+                use_nvim_cmp_as_default = true,
             },
-            documentation = {
-                border = 'rounded',
-                auto_show = true,
-                auto_show_delay_ms = 500,
-                update_delay_ms = 50,
-            },
-            signature_help = {
-                border = 'rounded',
-            },
-        },
-        nerd_font_variant = 'mono',
-        highlight = {
-            ns = vim.api.nvim_create_namespace('blink_cmp'),
-            use_nvim_cmp_as_default = true,
-        },
-    })
+        }
+    )
 end)
 
 local function do_for_attached(cb)
