@@ -31,5 +31,7 @@ hs.hotkey.bind({ modA, shiftKey }, left, aerospace.move_left)
 hs.hotkey.bind({ modA, shiftKey }, down, aerospace.move_down)
 hs.hotkey.bind({ modA, shiftKey }, up, aerospace.move_up)
 hs.hotkey.bind({ modA, shiftKey }, right, aerospace.move_right)
+hs.hotkey.bind({ modA, shiftKey }, "q", aerospace.quit)
+hs.hotkey.bind({ modA, shiftKey }, "f", aerospace.fullscreen)
 
 hs.hotkey.bind({ modA }, "return", aerospace.open_terminal)

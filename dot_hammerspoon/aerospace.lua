@@ -75,7 +75,7 @@ M.open_terminal = function()
     end
 
 
-    os.execute("nohup " .. "/opt/homebrew/bin/alacritty" .. " &")
+    os.execute("nohup " .. "wezterm" .. " &")
 end
 
 M.move_to_workspace = function(i)
@@ -108,6 +108,14 @@ end
 
 M.move_down = function()
     aerospaceExec("move down")
+end
+
+M.quit = function()
+    aerospaceExec("close")
+end
+
+M.fullscreen = function()
+    aerospaceExec("fullscreen")
 end
 
 M.setup = function()
