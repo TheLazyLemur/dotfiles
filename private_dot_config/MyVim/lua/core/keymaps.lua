@@ -29,30 +29,54 @@ vim.keymap.set("n", "qw", ":wq<cr>")
 
 vim.keymap.set("n", "<leader>zz", require("mini.misc").zoom)
 
-vim.keymap.set("n", "<leader>sf", ":Pick files<cr>")
-vim.keymap.set("n", "<leader>sg", ":Pick grep_live<cr>")
-vim.keymap.set("n", "<leader>gs", ":Pick grep<cr>")
-vim.keymap.set("n", "<leader><leader>", ":Pick buffers<cr>")
+PICKER = "telescope"
+vim.keymap.set("n", "<leader>sf", function()
+    if PICKER == "mini" then
+        vim.cmd("Pick files")
+    else
+        vim.cmd("Telescope find_files")
+    end
+end)
+vim.keymap.set("n", "<leader>sg", function()
+    if PICKER == "mini" then
+        vim.cmd("Pick grep_live")
+    else
+        vim.cmd("Telescope live_grep")
+    end
+end)
+vim.keymap.set("n", "<leader>gs", function()
+    if PICKER == "mini" then
+        vim.cmd("Pick grep")
+    else
+        vim.cmd("Telescope grep_string")
+    end
+end)
+vim.keymap.set("n", "<leader><leader>", function()
+    if PICKER == "mini" then
+        vim.cmd("Pick buffers")
+    else
+        vim.cmd("Telescope buffers")
+    end
+end)
 
 vim.keymap.set("t", "<leader><esc>", [[<C-\><C-n>]])
 
-vim.keymap.set({ "n", "i" }, "<leader>/", ":ReferencePoint<cr>")
+vim.keymap.set({ "n", "i" }, "<leader>c/", ":ReferencePoint<cr>")
 
-local lsp_keymaps = function(args)
-    local bufnr = args.buf
-    local opts = { noremap = true, silent = true, buffer = bufnr }
-
-    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-    vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-    vim.keymap.set("n", "<leader>f", function() vim.lsp.buf.format({ async = true }) end, opts)
-end
-
-local augroup = vim.api.nvim_create_augroup("MyVim-FT-Builtin-Keymaps", { clear = true })
 vim.api.nvim_create_autocmd("LspAttach", {
-    group = augroup,
-    callback = lsp_keymaps,
+    group = vim.api.nvim_create_augroup("MyVim-LSP-Attach-Keymaps", { clear = true }),
+    callback = function(args)
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        if not client then
+            return
+        end
+
+        local opts = { noremap = true, silent = true, buffer = args.buf }
+        vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+        vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+        vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+        vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+        vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+        vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+    end,
 })

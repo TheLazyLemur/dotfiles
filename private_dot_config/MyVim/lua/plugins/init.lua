@@ -125,13 +125,6 @@ local plugins = {
         end
     },
     {
-        source = "nvchad/menu",
-        depends = {
-            "nvchad/volt",
-        },
-        lazy = true,
-    },
-    {
         source = "nvimtools/none-ls.nvim",
         depends = {
             "nvim-lua/plenary.nvim",
@@ -141,14 +134,14 @@ local plugins = {
             local null_ls = require("null-ls")
             null_ls.setup({
                 sources = {
-                    null_ls.builtins.formatting.gofumpt,
-                    null_ls.builtins.formatting.goimports_reviser,
-                    null_ls.builtins.formatting.golines,
+                    -- null_ls.builtins.formatting.gofumpt,
+                    -- null_ls.builtins.formatting.goimports_reviser,
+                    -- null_ls.builtins.formatting.golines,
                     null_ls.builtins.code_actions.impl,
                     null_ls.builtins.code_actions.refactoring,
                     null_ls.builtins.formatting.uncrustify,
-                    null_ls.builtins.formatting.prettier,
-                    null_ls.builtins.formatting.rustywind,
+                    -- null_ls.builtins.formatting.prettier,
+                    -- null_ls.builtins.formatting.rustywind,
                     -- null_ls.builtins.diagnostics.golangci_lint,
                 },
             })
@@ -190,6 +183,36 @@ local plugins = {
             require("templ-goto-definition").setup()
         end
     },
+    {
+        source = "nvim-tree/nvim-tree.lua",
+        config = function()
+            require("nvim-tree").setup()
+        end
+    },
+    {
+        source = "supermaven-inc/supermaven-nvim",
+        config = function()
+            require("supermaven-nvim").setup({})
+        end,
+    },
+    {
+        source = "nvim-telescope/telescope-fzf-native.nvim",
+        hooks = { post_checkout = function() vim.cmd('make') end },
+    },
+    {
+        source = "nvim-telescope/telescope.nvim",
+        depends = {
+            "nvim-lua/plenary.nvim",
+        },
+        config = function()
+            require("telescope").setup({
+                extensions = {
+                    fzf = {},
+                },
+            })
+            require("telescope").load_extension("fzf")
+        end,
+    },
 }
 
 for _, p in pairs(plugins) do
@@ -209,7 +232,7 @@ for _, p in pairs(plugins) do
             if p.config ~= nil then
                 local ok = pcall(p.config)
                 if not ok then
-                    print("Failed to load plugin" .. p.source)
+                    print("Failed to load plugin: " .. p.source)
                 end
             end
         end)
