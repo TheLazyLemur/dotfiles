@@ -1,5 +1,4 @@
 local termmy = require("builtin.termmy")
-local bookmarks = require("builtin.bookmarks")
 local spear = require("builtin.spear")
 
 termmy.setup(function()
@@ -23,7 +22,6 @@ termmy.setup(function()
     }
 end)
 
-bookmarks.setup()
 spear.setup()
 
 require("builtin.keymaps")
