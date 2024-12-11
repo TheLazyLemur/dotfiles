@@ -1,5 +1,4 @@
 local termmy = require("builtin.termmy")
-local compile = require("builtin.compile")
 local spear = require("builtin.spear")
 
 vim.keymap.set({ "n", "t" }, "<leader>tf", function() termmy.toggle(nil) end)
@@ -7,8 +6,6 @@ vim.keymap.set({ "n", "t" }, "<leader>tff", function() termmy.toggle(nil, "hello
 
 vim.keymap.set({ "n", "t" }, "<leader>tS", function() termmy.toggle(true, vim.fn.expand('%:p:h') .. '/') end)
 vim.keymap.set({ "n", "t" }, "<leader>tF", function() termmy.toggle(false, vim.fn.expand('%:p:h') .. '/') end)
-
-vim.keymap.set('n', '<leader>cc', compile.compile, { desc = '[E]rror [C]ompile' })
 
 vim.keymap.set("n", "<leader>mm", spear.throw)
 vim.keymap.set("n", "<leader>ms", spear.pick)
