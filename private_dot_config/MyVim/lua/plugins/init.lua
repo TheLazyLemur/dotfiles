@@ -185,21 +185,12 @@ local plugins = {
         end,
     },
     {
-        source = "nvim-telescope/telescope-fzf-native.nvim",
-        hooks = { post_checkout = function() vim.cmd('make') end },
-    },
-    {
         source = "nvim-telescope/telescope.nvim",
         depends = {
             "nvim-lua/plenary.nvim",
         },
         config = function()
-            require("telescope").setup({
-                extensions = {
-                    fzf = {},
-                },
-            })
-            require("telescope").load_extension("fzf")
+            require("telescope").setup({})
         end,
     },
     {
