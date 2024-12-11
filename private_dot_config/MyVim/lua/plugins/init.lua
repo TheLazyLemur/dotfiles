@@ -113,11 +113,6 @@ local plugins = {
         end
     },
     {
-        name = "error-jump",
-        source = "Dr-42/error-jump.nvim",
-        lazy = true,
-    },
-    {
         source = "mistweaverco/kulala.nvim",
         lazy = true,
         config = function()
@@ -181,12 +176,6 @@ local plugins = {
         source = "catgoose/templ-goto-definition",
         config = function()
             require("templ-goto-definition").setup()
-        end
-    },
-    {
-        source = "nvim-tree/nvim-tree.lua",
-        config = function()
-            require("nvim-tree").setup()
         end
     },
     {
