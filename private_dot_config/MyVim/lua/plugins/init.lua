@@ -213,6 +213,18 @@ local plugins = {
             require("telescope").load_extension("fzf")
         end,
     },
+    {
+        source = "rachartier/tiny-inline-diagnostic.nvim",
+        lazy = true,
+        config = function()
+            vim.diagnostic.config({ virtual_text = false })
+            require('tiny-inline-diagnostic').setup({
+                options = {
+                    multilines = true,
+                }
+            })
+        end
+    },
 }
 
 for _, p in pairs(plugins) do
