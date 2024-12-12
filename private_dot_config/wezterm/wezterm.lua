@@ -6,14 +6,14 @@ config.color_scheme = 'Rosé Pine Moon (Gogh)'
 
 config.keys = {
     {
-        key = "v",
+        key = "s",
         mods = "LEADER",
         action = wezterm.action_callback(function(window, pane)
             pane:split { direction = "Bottom" }
         end),
     },
     {
-        key = "s",
+        key = "v",
         mods = "LEADER",
         action = wezterm.action_callback(function(window, pane)
             pane:split { direction = "Right" }
@@ -27,11 +27,13 @@ config.keys = {
     { key = 'PageDown', mods = 'NONE',   action = act.ScrollByPage(0.75) },
 }
 
-config.font = wezterm.font 'JetBrains Mono'
-config.leader = { key = 'b', mods = 'CTRL', timeout_milliseconds = 1000 }
+config.font = wezterm.font 'ComicShannsMono Nerd Font'
+config.leader = { key = 'Space', mods = 'CTRL', timeout_milliseconds = 1000 }
 config.hide_tab_bar_if_only_one_tab = true
 config.window_decorations = "RESIZE"
-config.font_size = 12
+config.font_size = 14
+config.line_height = 1.3
+config.window_background_opacity = 0.9
 config.audible_bell = "Disabled"
 
 require("tabs").setup(config)
