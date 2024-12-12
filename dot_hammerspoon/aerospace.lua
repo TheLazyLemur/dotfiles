@@ -75,7 +75,7 @@ M.open_terminal = function()
     end
 
 
-    os.execute("nohup " .. "wezterm" .. " &")
+    os.execute("nohup " .. "/opt/homebrew/bin/wezterm start --always-new-process" .. " &")
 end
 
 M.move_to_workspace = function(i)
