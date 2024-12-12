@@ -1,60 +1,52 @@
-local later = MiniDeps.later
+MiniDeps.add("williamboman/mason.nvim")
 
-later(function()
-    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-        border = "rounded",
-    })
+require("mason").setup()
 
-    MiniDeps.add("williamboman/mason.nvim")
-
-    require("mason").setup()
-
-    MiniDeps.add("neovim/nvim-lspconfig")
-    local lspconfig = require("lspconfig")
+MiniDeps.add("neovim/nvim-lspconfig")
+local lspconfig = require("lspconfig")
 
 
-    local servers = { "gopls", "templ", "lua_ls", "zls", "clangd" }
+local servers = { "gopls", "templ", "lua_ls", "zls", "clangd" }
 
-    for _, server in ipairs(servers) do
-        lspconfig[server].setup {
-            flags = {
-                debounce_text_changes = 150,
-            },
-        }
-    end
-
-    MiniDeps.add({
-        source = "saghen/blink.cmp",
-        depends = {
-            "rafamadriz/friendly-snippets"
+for _, server in ipairs(servers) do
+    lspconfig[server].setup {
+        flags = {
+            debounce_text_changes = 150,
         },
-        hooks = { post_checkout = function() vim.cmd('!cargo build --release') end },
-    })
-    require("blink.cmp").setup(
-        {
-            completion = {
-                menu = {
-                    border = 'rounded',
-                },
-                documentation = {
-                    auto_show = true,
-                    window = {
-                        border = 'rounded',
-                    },
-                },
+    }
+end
+
+MiniDeps.add({
+    source = "saghen/blink.cmp",
+    depends = {
+        "rafamadriz/friendly-snippets"
+    },
+    hooks = { post_checkout = function() vim.cmd('!cargo build --release') end },
+})
+require("blink.cmp").setup(
+    {
+        completion = {
+            menu = {
+                border = 'rounded',
             },
-            signature = {
-                enabled = true,
+            documentation = {
+                auto_show = true,
                 window = {
                     border = 'rounded',
                 },
             },
-            appearance = {
-                use_nvim_cmp_as_default = true,
+        },
+        signature = {
+            enabled = true,
+            window = {
+                border = 'rounded',
             },
-        }
-    )
-end)
+        },
+        appearance = {
+            use_nvim_cmp_as_default = true,
+        },
+    }
+)
 
 local function do_for_attached(cb)
     local ok, clients = pcall(vim.lsp.get_clients)
@@ -84,4 +76,8 @@ vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
     pattern = "*.go",
     group = vim.api.nvim_create_augroup("user-lsp-moved", { clear = true }),
     callback = function() do_for_attached(vim.lsp.buf.clear_references) end,
+})
+
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+    border = "rounded",
 })
