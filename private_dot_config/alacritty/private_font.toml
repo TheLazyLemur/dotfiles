@@ -1,0 +1,9 @@
+[font]
+normal              = { family = "ComicShannsMono Nerd Font", style = "Regular" }
+bold                = { family = "ComicShannsMono Nerd Font", style = "Bold" }
+italic              = { family = "ComicShannsMono Nerd Font", style = "Italic" }
+builtin_box_drawing = true
+offset              = { x = 1, y = 10 }
+glyph_offset        = { x = 0, y = 5 }
+size                = 14
+
