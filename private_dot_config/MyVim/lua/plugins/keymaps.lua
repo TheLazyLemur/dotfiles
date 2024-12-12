@@ -58,8 +58,8 @@ local ft_keymaps = {
         local bufnr = args.buf
         local opts = { noremap = true, silent = true, buffer = bufnr }
 
-        vim.keymap.set("n", "<leader>tt", ":GoTestFile -v -F<CR>", opts)
-        vim.keymap.set("n", "<leader>tf", ":GoTestFunc -v -F<CR>", opts)
+        vim.keymap.set("n", "<leader>tt", function() require('neotest').run.run(vim.fn.expand('%')) end, opts)
+        vim.keymap.set("n", "<leader>tf", function() require('neotest').run.run() end, opts)
         vim.keymap.set("n", "<leader>tc", ":GoTestSubCase -v -F<CR>", opts)
     end,
 }

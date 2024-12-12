@@ -137,7 +137,7 @@ local plugins = {
                     null_ls.builtins.formatting.uncrustify,
                     -- null_ls.builtins.formatting.prettier,
                     -- null_ls.builtins.formatting.rustywind,
-                    -- null_ls.builtins.diagnostics.golangci_lint,
+                    null_ls.builtins.diagnostics.golangci_lint,
                 },
             })
         end
@@ -202,6 +202,24 @@ local plugins = {
                 options = {
                     multilines = true,
                 }
+            })
+        end
+    },
+    {
+        source = "nvim-neotest/neotest",
+        depends = {
+            "nvim-neotest/nvim-nio",
+            "nvim-lua/plenary.nvim",
+            "antoinemadec/FixCursorHold.nvim",
+            "nvim-treesitter/nvim-treesitter",
+            "fredrikaverpil/neotest-golang"
+        },
+        lazy = true,
+        config = function()
+            require("neotest").setup({
+                adapters = {
+                    require("neotest-golang"),
+                },
             })
         end
     },
