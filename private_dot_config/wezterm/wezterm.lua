@@ -19,12 +19,14 @@ config.keys = {
             pane:split { direction = "Right" }
         end),
     },
-    { key = 'q',        mods = "LEADER", action = act.CloseCurrentPane({ confirm = false }) },
-    { key = 'Enter',    mods = "LEADER", action = act.TogglePaneZoomState },
-    { key = 'u',        mods = 'LEADER', action = act.ScrollByLine(-4) },
-    { key = 'd',        mods = 'LEADER', action = act.ScrollByLine(5) },
-    { key = 'PageUp',   mods = 'NONE',   action = act.ScrollByPage(-0.75) },
-    { key = 'PageDown', mods = 'NONE',   action = act.ScrollByPage(0.75) },
+    { key = 'q',          mods = "LEADER", action = act.CloseCurrentPane({ confirm = false }) },
+    { key = 'Enter',      mods = "LEADER", action = act.TogglePaneZoomState },
+    { key = 'u',          mods = 'LEADER', action = act.ScrollByLine(-4) },
+    { key = 'd',          mods = 'LEADER', action = act.ScrollByLine(5) },
+    { key = 'RightArrow', mods = 'LEADER', action = wezterm.action.ActivateTabRelative(1), },
+    { key = 'LeftArrow',  mods = 'LEADER', action = wezterm.action.ActivateTabRelative(-1), },
+    { key = 'PageUp',     mods = 'NONE',   action = act.ScrollByPage(-0.75) },
+    { key = 'PageDown',   mods = 'NONE',   action = act.ScrollByPage(0.75) },
 }
 
 config.font = wezterm.font 'ComicShannsMono Nerd Font'
