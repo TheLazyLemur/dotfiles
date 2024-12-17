@@ -1,21 +1,5 @@
 MiniDeps.add("williamboman/mason.nvim")
-
-require("mason").setup()
-
 MiniDeps.add("neovim/nvim-lspconfig")
-local lspconfig = require("lspconfig")
-
-
-local servers = { "gopls", "templ", "lua_ls", "zls", "clangd" }
-
-for _, server in ipairs(servers) do
-    lspconfig[server].setup {
-        flags = {
-            debounce_text_changes = 150,
-        },
-    }
-end
-
 MiniDeps.add({
     source = "saghen/blink.cmp",
     depends = {
@@ -23,6 +7,23 @@ MiniDeps.add({
     },
     hooks = { post_checkout = function() vim.cmd('!cargo build --release') end },
 })
+
+
+local lspconfig = require("lspconfig")
+local capabilities = require('blink.cmp').get_lsp_capabilities()
+local servers = { "gopls", "templ", "lua_ls", "zls", "clangd" }
+
+require("mason").setup()
+
+for _, server in ipairs(servers) do
+    lspconfig[server].setup {
+        flags = {
+            debounce_text_changes = 150,
+        },
+        capabilities = capabilities,
+    }
+end
+
 require("blink.cmp").setup(
     {
         completion = {
