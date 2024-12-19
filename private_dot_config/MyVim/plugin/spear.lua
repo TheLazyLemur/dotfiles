@@ -163,4 +163,10 @@ SPEAR.setup = function()
     end
 end
 
+SPEAR.setup()
+
+vim.keymap.set("n", "<leader>mm", SPEAR.throw)
+vim.keymap.set("n", "<leader>ms", SPEAR.pick)
+vim.keymap.set("n", "<leader>md", function() SPEAR.pick("delete") end)
+
 return SPEAR

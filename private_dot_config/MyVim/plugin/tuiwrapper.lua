@@ -34,4 +34,7 @@ M.interactive_command_wrapper = function(cmd)
     })
 end
 
+vim.keymap.set("n", "<leader>g", function() M.interactive_command_wrapper("lazygit") end)
+vim.keymap.set("n", "<leader>d", function() M.interactive_command_wrapper("lazydocker") end)
+
 return M
