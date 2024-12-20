@@ -1,5 +1,6 @@
 MiniDeps.add("williamboman/mason.nvim")
 MiniDeps.add("neovim/nvim-lspconfig")
+
 MiniDeps.add({
     source = "saghen/blink.cmp",
     depends = {
@@ -8,21 +9,7 @@ MiniDeps.add({
     hooks = { post_checkout = function() vim.cmd('!cargo build --release') end },
 })
 
-
-local lspconfig = require("lspconfig")
-local capabilities = require('blink.cmp').get_lsp_capabilities()
-local servers = { "gopls", "templ", "lua_ls", "zls", "clangd" }
-
 require("mason").setup()
-
-for _, server in ipairs(servers) do
-    lspconfig[server].setup {
-        flags = {
-            debounce_text_changes = 150,
-        },
-        capabilities = capabilities,
-    }
-end
 
 require("blink.cmp").setup(
     {
@@ -48,6 +35,25 @@ require("blink.cmp").setup(
         },
     }
 )
+
+local lspconfig = require("lspconfig")
+local capabilities = require('blink.cmp').get_lsp_capabilities()
+local servers = { "gopls", "templ", "lua_ls", "zls", "clangd" }
+for _, server in ipairs(servers) do
+    lspconfig[server].setup {
+        flags = {
+            debounce_text_changes = 150,
+        },
+        capabilities = capabilities,
+    }
+end
+
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+    opts = opts or {}
+    opts.border = "rounded"
+    return orig_util_open_floating_preview(contents, syntax, opts, ...)
+end
 
 local function do_for_attached(cb)
     local ok, clients = pcall(vim.lsp.get_clients)

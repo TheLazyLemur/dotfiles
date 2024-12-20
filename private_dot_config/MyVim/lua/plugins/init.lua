@@ -33,6 +33,8 @@ local plugins = {
         name = "rose-pine",
         source = "rose-pine/neovim",
         config = function()
+            require("rose-pine").setup({
+            })
             vim.cmd("colorscheme rose-pine-main")
         end
     },
@@ -129,8 +131,8 @@ local plugins = {
             local null_ls = require("null-ls")
             null_ls.setup({
                 sources = {
-                    -- null_ls.builtins.formatting.gofumpt,
-                    -- null_ls.builtins.formatting.goimports_reviser,
+                    null_ls.builtins.formatting.gofumpt,
+                    null_ls.builtins.formatting.goimports_reviser,
                     -- null_ls.builtins.formatting.golines,
                     null_ls.builtins.code_actions.impl,
                     null_ls.builtins.code_actions.refactoring,
@@ -223,6 +225,39 @@ local plugins = {
             })
         end
     },
+    {
+        source = "akinsho/bufferline.nvim",
+        config = function()
+            vim.opt.termguicolors = true
+            require("bufferline").setup {
+                options = {
+                    offsets = {
+                        {
+                            filetype = "NvimTree",
+                            separator = true
+                        },
+                        {
+                            filetype = "neotest-summary",
+                            separator = true
+                        },
+                    },
+                }
+            }
+        end
+    },
+    {
+        source = "nvim-tree/nvim-tree.lua",
+        config = function()
+            vim.g.loaded_netrw = 1
+            vim.g.loaded_netrwPlugin = 1
+            vim.opt.termguicolors = true
+            require("nvim-tree").setup({
+                update_focused_file = {
+                    enable = true,
+                }
+            })
+        end
+    }
 }
 
 for _, p in pairs(plugins) do

@@ -8,6 +8,17 @@ vim.keymap.set("n", "<down>", "<C-w>j")
 vim.keymap.set("n", "<up>", "<C-w>k")
 vim.keymap.set("n", "<right>", "<C-w>l")
 
+vim.keymap.set("n", "<Tab>", ":bnext<CR>")
+vim.keymap.set("n", "<S-Tab>", ":bprevious<CR>")
+
+for i = 1, 9 do
+    vim.keymap.set("n", "<leader>" .. tostring(i), function()
+        local buffers = vim.fn.getbufinfo({ bufloaded = 1, buflisted = 1 })
+        local buf = buffers[i]
+        vim.cmd("b " .. buf.bufnr)
+    end)
+end
+
 vim.keymap.set("n", "<C-Up>", ":resize +2<CR>")
 vim.keymap.set("n", "<C-Down>", ":resize -2<CR>")
 vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>")
