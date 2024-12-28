@@ -1,0 +1,33 @@
+theme = tokyonight
+
+font-thicken = true
+
+adjust-underline-position = 40%
+adjust-underline-thickness = -60%
+
+cursor-style = block
+cursor-style-blink = true
+
+shell-integration = zsh
+shell-integration-features = no-cursor
+
+window-width = 120
+window-height = 45
+window-padding-x = 4
+
+confirm-close-surface = false
+clipboard-paste-protection = false
+unfocused-split-opacity = 0.5
+
+keybind = ctrl+a>n=new_window
+keybind = ctrl+a>q=toggle_quick_terminal
+keybind = ctrl+a>v=new_split:right
+keybind = ctrl+a>s=new_split:down
+keybind = ctrl+a>h=goto_split:left
+keybind = ctrl+a>l=goto_split:right
+keybind = ctrl+a>j=goto_split:bottom
+keybind = ctrl+a>k=goto_split:top
+
+custom-shader = starfield.glsl
+
+custom-shader-animation = true
