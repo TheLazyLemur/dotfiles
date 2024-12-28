@@ -75,7 +75,7 @@ M.open_terminal = function()
     end
 
 
-    os.execute("nohup " .. "/opt/homebrew/bin/wezterm start --always-new-process" .. " &")
+    os.execute("nohup " .. "open -n /Applications/Ghostty.app" .. " &")
 end
 
 M.move_to_workspace = function(i)
