@@ -22,8 +22,8 @@ now(require("mini.icons").setup)
 now(require("mini.icons").mock_nvim_web_devicons)
 now(require("mini.extra").setup)
 
-later(require("mini.pick").setup)
-later(function() vim.ui.select = require("mini.pick").ui_select end)
+-- later(require("mini.pick").setup)
+-- later(function() vim.ui.select = require("mini.pick").ui_select end)
 
 later(function()
     local hipatterns = require('mini.hipatterns')
@@ -37,5 +37,3 @@ later(function()
         },
     })
 end)
-
-later(require('mini.jump2d').setup)

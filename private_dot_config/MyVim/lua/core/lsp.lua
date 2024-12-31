@@ -38,7 +38,7 @@ require("blink.cmp").setup(
 
 local lspconfig = require("lspconfig")
 local capabilities = require('blink.cmp').get_lsp_capabilities()
-local servers = { "gopls", "templ", "lua_ls", "zls", "clangd" }
+local servers = { "gopls", "templ", "lua_ls", "zls", "clangd", "ts_ls", "volar", "svelte" }
 for _, server in ipairs(servers) do
     lspconfig[server].setup {
         flags = {
@@ -52,6 +52,7 @@ local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
 function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
     opts = opts or {}
     opts.border = "rounded"
+    opts.width = math.min(opts.width or 80, 120)
     return orig_util_open_floating_preview(contents, syntax, opts, ...)
 end
 
