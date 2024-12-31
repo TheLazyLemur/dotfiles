@@ -135,6 +135,7 @@ local plugins = {
 					templ = { "rustywind", "templ", "htmlbeautifier" },
 				},
 			})
+
 			vim.api.nvim_create_user_command("Format", function(args)
 				local range = nil
 				if args.count ~= -1 then
@@ -144,8 +145,15 @@ local plugins = {
 						["end"] = { args.line2, end_line:len() },
 					}
 				end
-				require("conform").format({ async = true, lsp_format = "fallback", range = range })
+				require("conform").format({ async = false, lsp_format = "fallback", range = range })
 			end, { range = true })
+
+			vim.api.nvim_create_autocmd("BufWritePre", {
+				group = vim.api.nvim_create_augroup("MyVim-LSP-Format", { clear = true }),
+				callback = function()
+					vim.cmd("Format")
+				end,
+			})
 		end,
 	},
 	{
@@ -271,6 +279,16 @@ local plugins = {
 					},
 				},
 			})
+		end,
+	},
+	{
+		source = "utilyre/barbecue.nvim",
+		version = "*",
+		depends = {
+			"SmiteshP/nvim-navic",
+		},
+		config = function()
+			require("barbecue").setup({})
 		end,
 	},
 }
