@@ -1,14 +1,14 @@
 shell-integration = zsh
 shell-integration-features = no-cursor
 
-theme = tokyonight
+theme = rose-pine
 
-font-family = JetBrains Mono
-font-thicken = true
+font-family = dansgame
+font-thicken = false
 
 background-opacity = 0.9
 
-adjust-cell-height = 10%
+# adjust-cell-height = 10%
 
 adjust-underline-position = 40%
 adjust-underline-thickness = -60%
@@ -20,21 +20,33 @@ confirm-close-surface = false
 clipboard-paste-protection = false
 unfocused-split-opacity = 0.8
 
-# custom-shader = crt.glsl
+keybind=clear
 
 keybind = ctrl+s>r=reload_config
 keybind = ctrl+s>i=inspector:toggle
-keybind = ctrl+s>n=new_window
+
 keybind = ctrl+s>v=new_split:right
 keybind = ctrl+s>s=new_split:down
+
 keybind = ctrl+s>h=goto_split:left
 keybind = ctrl+s>l=goto_split:right
 keybind = ctrl+s>j=goto_split:bottom
 keybind = ctrl+s>k=goto_split:top
 keybind = ctrl+s>f=toggle_split_zoom
 keybind = ctrl+s>w=toggle_quick_terminal
-keybind = left=resize_split:left,10
-keybind = right=resize_split:right,10
-keybind = up=resize_split:up,10
-keybind = down=resize_split:down,10
+
+keybind = super+equal=increase_font_size:1
+keybind = super+minus=decrease_font_size:1
+keybind = super+h=resize_split:left,10
+keybind = super+l=resize_split:right,10
+keybind = super+k=resize_split:up,10
+keybind = super+j=resize_split:down,10
+
 keybind = global:ctrl+shift+space=toggle_quick_terminal
+
+keybind = ctrl+h=goto_split:left
+keybind = ctrl+l=goto_split:right
+keybind = ctrl+j=goto_split:bottom
+keybind = ctrl+k=goto_split:top
+
+# custom-shader = crt.glsl
