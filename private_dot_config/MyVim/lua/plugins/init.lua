@@ -150,8 +150,11 @@ local plugins = {
 
 			vim.api.nvim_create_autocmd("BufWritePre", {
 				group = vim.api.nvim_create_augroup("MyVim-LSP-Format", { clear = true }),
-				callback = function()
-					vim.cmd("Format")
+				callback = function(params)
+					local buf_name = vim.api.nvim_buf_get_name(params.buf)
+					if not buf_name:match("bash") then
+						vim.cmd("Format")
+					end
 				end,
 			})
 		end,
