@@ -1,17 +1,20 @@
 shell-integration = zsh
 shell-integration-features = no-cursor
+quit-after-last-window-closed = true
+working-directory = home
+window-inherit-working-directory = false
+window-save-state = never
+bold-is-bright = true
 
 theme = rose-pine
 
-font-family = dansgame
 font-thicken = false
 
 background-opacity = 0.9
 
-# adjust-cell-height = 10%
-
 adjust-underline-position = 40%
 adjust-underline-thickness = -60%
+adjust-cell-height = 20%
 
 cursor-style = block
 cursor-style-blink = true
@@ -32,21 +35,18 @@ keybind = ctrl+s>h=goto_split:left
 keybind = ctrl+s>l=goto_split:right
 keybind = ctrl+s>j=goto_split:bottom
 keybind = ctrl+s>k=goto_split:top
-keybind = ctrl+s>f=toggle_split_zoom
+
+keybind = ctrl+s>enter=toggle_split_zoom
 keybind = ctrl+s>w=toggle_quick_terminal
+
+keybind = super+shift+h=resize_split:left,10
+keybind = super+shift+l=resize_split:right,10
+keybind = super+shift+k=resize_split:up,10
+keybind = super+shift+j=resize_split:down,10
 
 keybind = super+equal=increase_font_size:1
 keybind = super+minus=decrease_font_size:1
-keybind = super+h=resize_split:left,10
-keybind = super+l=resize_split:right,10
-keybind = super+k=resize_split:up,10
-keybind = super+j=resize_split:down,10
 
 keybind = global:ctrl+shift+space=toggle_quick_terminal
 
-keybind = ctrl+h=goto_split:left
-keybind = ctrl+l=goto_split:right
-keybind = ctrl+j=goto_split:bottom
-keybind = ctrl+k=goto_split:top
-
-# custom-shader = crt.glsl
+# custom-shader = gears.glsl
