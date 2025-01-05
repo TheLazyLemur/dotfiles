@@ -62,4 +62,4 @@ keybind = super+minus=decrease_font_size:1
 
 keybind = global:ctrl+shift+space=toggle_quick_terminal
 
-# custom-shader = gears.glsl
+# custom-shader = starfield.glsl
