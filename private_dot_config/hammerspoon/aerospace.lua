@@ -96,6 +96,10 @@ M.fullscreen = function()
 	aerospaceExec("fullscreen")
 end
 
+M.resize = function(dir, value)
+	aerospaceExec("resize " .. dir .. " " .. value)
+end
+
 M.layout = function(v)
 	aerospaceExec("layout " .. v)
 end

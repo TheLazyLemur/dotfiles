@@ -46,3 +46,19 @@ end)
 hs.hotkey.bind({ modA }, "return", function()
 	os.execute("nohup " .. "open -na /Applications/Ghostty.app" .. " &")
 end)
+
+hs.hotkey.bind({ modA, shiftKey }, "right", function()
+	aerospace.resize("width", "+10")
+end)
+
+hs.hotkey.bind({ modA, shiftKey }, "left", function()
+	aerospace.resize("width", "-10")
+end)
+
+hs.hotkey.bind({ modA, shiftKey }, "up", function()
+	aerospace.resize("height", "+10")
+end)
+
+hs.hotkey.bind({ modA, shiftKey }, "down", function()
+	aerospace.resize("height", "-10")
+end)
