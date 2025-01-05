@@ -25,3 +25,9 @@ outer.top =        5
 
 [mode.main.binding]
 cmd-h = []
+
+[[on-window-detected]]
+if.app-id="com.mitchellh.ghostty"
+run= [
+  "layout floating",
+]
