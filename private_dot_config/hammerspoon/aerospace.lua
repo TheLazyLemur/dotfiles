@@ -1,3 +1,5 @@
+local hs = hs
+
 local AEROSPACE = "/opt/homebrew/bin/aerospace"
 
 local menuBarItem = hs.menubar.new()
@@ -11,16 +13,12 @@ local function setTitle(val)
 	menuBarItem:setTitle(val)
 end
 
-local function splitByNewline(text)
-	local lines = {}
-	for line in string.gmatch(text, "[^\r\n]+") do
-		table.insert(lines, line)
-	end
-	return lines
-end
-
 local function aerospaceExec(cmd)
 	os.execute("nohup " .. AEROSPACE .. " " .. cmd .. " &")
+end
+
+local function aerospaceExecSync(cmd)
+	os.execute(AEROSPACE .. " " .. cmd)
 end
 
 M.toggle_layer = function()
@@ -101,7 +99,7 @@ M.resize = function(dir, value)
 end
 
 M.layout = function(v)
-	aerospaceExec("layout " .. v)
+	aerospaceExecSync("layout " .. v)
 end
 
 M.setup = function()
