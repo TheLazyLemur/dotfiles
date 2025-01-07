@@ -1,3 +1,4 @@
+require("plugins.colorschemes")
 local now, later = MiniDeps.now, MiniDeps.later
 
 local plugins = {
@@ -23,18 +24,6 @@ local plugins = {
 			vim.api.nvim_set_hl(0, "MultiCursorVisual", { link = "Visual" })
 			vim.api.nvim_set_hl(0, "MultiCursorDisabledCursor", { link = "Visual" })
 			vim.api.nvim_set_hl(0, "MultiCursorDisabledVisual", { link = "Visual" })
-		end,
-	},
-	{
-		name = "catppuccin",
-		source = "catppuccin/nvim",
-	},
-	{
-		name = "rose-pine",
-		source = "rose-pine/neovim",
-		config = function()
-			require("rose-pine").setup({})
-			vim.cmd("colorscheme rose-pine-main")
 		end,
 	},
 	{
