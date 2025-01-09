@@ -24,7 +24,7 @@ outer.right      = 5
 outer.top        = [{ monitor."Dell" = 60 }, 5]
 
 [mode.main.binding]
-cma-h = []
+cmd-h = []
 
 [[on-window-detected]]
 if.app-id = "com.mitchellh.ghostty"
