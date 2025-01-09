@@ -17,4 +17,4 @@ MiniDeps.add({
 	source = "nyoom-engineering/oxocarbon.nvim",
 })
 
-vim.cmd.colorscheme("oxocarbon")
+vim.cmd.colorscheme("rose-pine")

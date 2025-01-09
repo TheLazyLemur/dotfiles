@@ -3,6 +3,9 @@ local now, later = MiniDeps.now, MiniDeps.later
 
 local plugins = {
 	{
+		source = "gpanders/editorconfig.nvim",
+	},
+	{
 		source = "lewis6991/gitsigns.nvim",
 		lazy = true,
 		config = function()
@@ -221,9 +224,12 @@ local plugins = {
 		},
 		lazy = true,
 		config = function()
+			local config = { -- Specify configuration
+				testify_enabled = true,
+			}
 			require("neotest").setup({
 				adapters = {
-					require("neotest-golang"),
+					require("neotest-golang")(config),
 				},
 			})
 		end,
