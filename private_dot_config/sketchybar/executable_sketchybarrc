@@ -37,10 +37,10 @@ sketchybar --add item battery right \
     icon.drawing=on \
     icon.color=0xff908caa \
     label.color=0xff908caa \
-    background.corner_radius=5 \
+    background.corner_radius=5
 
 sketchybar --add item clock right \
-    --set clock update_freq=1 icon=  script="$PLUGIN_DIR/clock.sh" \
+    --set clock update_freq=1 icon=  script="$PLUGIN_DIR/testplug" \
     icon.font="ComicShannsMono Nerd Font:Bold:18" \
     label.font="ComicShannsMono Nerd Font:Bold:18" \
     background.height=40 \
@@ -51,7 +51,7 @@ sketchybar --add item clock right \
     icon.color=0xff908caa \
     label.color=0xff908caa \
     icon.drawing=on \
-    background.corner_radius=5 \
+    background.corner_radius=5
 
 sketchybar \
     --add item sound right \
@@ -86,17 +86,17 @@ do
         icon.padding_left=10 \
         click_script="aerospace workspace $sid" \
         script="$PLUGIN_DIR/aerospace.sh $sid"
-done
+    done
 
-sketchybar --add item username center \
-    --set username update_freq=1 icon=  script="$PLUGIN_DIR/resolution.sh" \
-    icon.font="ComicShannsMono Nerd Font:Bold:18" \
-    label.font="ComicShannsMono Nerd Font:Bold:18" \
-    background.height=40 \
-    background.color=0x00000000 \
-    label.padding_left=10 \
-    label.padding_right=10 \
-    icon.color=0xff908caa \
-    label.color=0xff908caa \
-    icon.drawing=on \
-    background.corner_radius=5 \
+    sketchybar --add item username center \
+        --set username update_freq=1 icon=  script="$PLUGIN_DIR/resolution.sh" \
+        icon.font="ComicShannsMono Nerd Font:Bold:18" \
+        label.font="ComicShannsMono Nerd Font:Bold:18" \
+        background.height=40 \
+        background.color=0x00000000 \
+        label.padding_left=10 \
+        label.padding_right=10 \
+        icon.color=0xff908caa \
+        label.color=0xff908caa \
+        icon.drawing=on \
+        background.corner_radius=5

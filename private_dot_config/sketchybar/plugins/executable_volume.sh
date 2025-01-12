@@ -17,5 +17,5 @@ if [ "$SENDER" = "volume_change" ]; then
   esac
 
   sketchybar --set "$NAME" icon="$ICON" label="$VOLUME%"  \
-        icon.font="ComicShannsMono Nerd Font:Bold:18"
+        icon.font="ComicShannsMono Nerd Font:Bold:18" icon.color="0xffc4a7e7" background.border_color="0xffc4a7e7"
 fi

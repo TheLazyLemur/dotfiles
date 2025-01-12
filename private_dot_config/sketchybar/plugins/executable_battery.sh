@@ -8,21 +8,21 @@ if [ "$PERCENTAGE" = "" ]; then
 fi
 
 case "${PERCENTAGE}" in
-  9[0-9]|100) ICON="" COLOR="0xff14ff00"
+  9[0-9]|100) ICON="" COLOR="0xff3e8fb0"
   ;;
-  [6-8][0-9]) ICON="" COLOR="0xff14ff00"
+  [6-8][0-9]) ICON="" COLOR="0xff3e8fb0"
   ;;
-  [3-5][0-9]) ICON="" COLOR="0xffcfff00"
+  [3-5][0-9]) ICON="" COLOR="0xffd7827e"
   ;;
-  [1-2][0-9]) ICON="" COLOR="0xffff0000"
+  [1-2][0-9]) ICON="" COLOR="0xffeb6f92"
   ;;
   *) ICON=""
 esac
 
 if [[ "$CHARGING" != "" ]]; then
-  ICON="" COLOR="0xff14ff00"
+  ICON="" COLOR="0xff3e8fb0"
 fi
 
 # The item invoking this script (name $NAME) will get its icon and label
 # updated with the current battery status
-sketchybar --set "$NAME" icon="$ICON" icon.color="$COLOR" label="$PERCENTAGE%"
+sketchybar --set "$NAME" icon="$ICON" icon.color="$COLOR" label="$PERCENTAGE%" background.border_color="$COLOR"
