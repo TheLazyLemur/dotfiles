@@ -13,12 +13,6 @@ local plugins = {
 		end,
 	},
 	{
-		source = "stevearc/oil.nvim",
-		config = function()
-			require("oil").setup()
-		end,
-	},
-	{
 		source = "jake-stewart/multicursor.nvim",
 		lazy = true,
 		config = function()
@@ -255,19 +249,6 @@ local plugins = {
 		end,
 	},
 	{
-		source = "nvim-tree/nvim-tree.lua",
-		config = function()
-			vim.g.loaded_netrw = 1
-			vim.g.loaded_netrwPlugin = 1
-			vim.opt.termguicolors = true
-			require("nvim-tree").setup({
-				update_focused_file = {
-					enable = true,
-				},
-			})
-		end,
-	},
-	{
 		source = "folke/flash.nvim",
 		config = function()
 			require("flash").setup({
@@ -287,6 +268,36 @@ local plugins = {
 		},
 		config = function()
 			require("barbecue").setup({})
+		end,
+	},
+	{
+		source = "stevearc/oil.nvim",
+		config = function()
+			require("oil").setup()
+		end,
+	},
+	{
+		source = "nvim-tree/nvim-tree.lua",
+		config = function()
+			vim.g.loaded_netrw = 1
+			vim.g.loaded_netrwPlugin = 1
+			vim.opt.termguicolors = true
+			require("nvim-tree").setup({
+				update_focused_file = {
+					enable = true,
+				},
+			})
+		end,
+	},
+	{
+		source = "mikavilpas/yazi.nvim",
+		config = function()
+			require("yazi").setup({
+				open_for_directories = false,
+				keymaps = {
+					show_help = "<f1>",
+				},
+			})
 		end,
 	},
 }
