@@ -40,14 +40,44 @@ require("blink.cmp").setup({
 
 local lspconfig = require("lspconfig")
 local capabilities = require("blink.cmp").get_lsp_capabilities()
-local servers = { "gopls", "templ", "lua_ls", "zls", "clangd", "ts_ls", "volar", "svelte" }
+local servers = { "gopls", "templ", "lua_ls", "zls", "clangd", "ts_ls", "volar", "svelte", "zls" }
 for _, server in ipairs(servers) do
-	lspconfig[server].setup({
-		flags = {
-			debounce_text_changes = 150,
-		},
-		capabilities = capabilities,
-	})
+	if server == "gopls" then
+		require("lspconfig").gopls.setup({
+			capabilities = capabilities,
+			flags = {
+				debounce_text_changes = 150,
+			},
+			settings = {
+				gopls = {
+					hints = {
+						rangeVariableTypes = true,
+						parameterNames = true,
+						constantValues = true,
+						assignVariableTypes = true,
+						compositeLiteralFields = true,
+						compositeLiteralTypes = true,
+						functionTypeParameters = true,
+					},
+				},
+			},
+		})
+
+		vim.api.nvim_create_autocmd({ "BufEnter" }, {
+			pattern = "*.go",
+			group = vim.api.nvim_create_augroup("user-lsp-enter", { clear = true }),
+			callback = function()
+				vim.lsp.inlay_hint.enable(true, { bufnr = 0 })
+			end,
+		})
+	else
+		lspconfig[server].setup({
+			flags = {
+				debounce_text_changes = 150,
+			},
+			capabilities = capabilities,
+		})
+	end
 end
 
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
