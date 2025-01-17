@@ -1,4 +1,3 @@
-require("plugins.colorschemes")
 local now, later = MiniDeps.now, MiniDeps.later
 
 local plugins = {
@@ -277,27 +276,19 @@ local plugins = {
 		end,
 	},
 	{
-		source = "nvim-tree/nvim-tree.lua",
-		config = function()
-			vim.g.loaded_netrw = 1
-			vim.g.loaded_netrwPlugin = 1
-			vim.opt.termguicolors = true
-			require("nvim-tree").setup({
-				update_focused_file = {
-					enable = true,
-				},
-			})
-		end,
-	},
-	{
 		source = "mikavilpas/yazi.nvim",
 		config = function()
 			require("yazi").setup({
 				open_for_directories = false,
-				keymaps = {
-					show_help = "<f1>",
-				},
+				floating_window_scaling_factor = 0.7,
+				yazi_floating_window_winblend = 10,
 			})
+		end,
+	},
+	{
+		source = "nvim-focus/focus.nvim",
+		config = function()
+			require("focus").setup()
 		end,
 	},
 }

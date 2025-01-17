@@ -2,6 +2,13 @@ local dap = require("dap")
 local dapui = require("dapui")
 local mc = require("multicursor-nvim")
 local kulala = require("kulala")
+local smart_splits = require("smart-splits")
+
+vim.keymap.set("n", "<C-h>", smart_splits.move_cursor_left)
+vim.keymap.set("n", "<C-j>", smart_splits.move_cursor_down)
+vim.keymap.set("n", "<C-k>", smart_splits.move_cursor_up)
+vim.keymap.set("n", "<C-l>", smart_splits.move_cursor_right)
+vim.keymap.set("n", "<C-\\>", smart_splits.move_cursor_previous)
 
 vim.keymap.set("n", "-", ":Oil<cr>")
 vim.keymap.set("n", "<leader>-", ":Yazi<cr>")
@@ -51,6 +58,8 @@ vim.keymap.set("n", "<leader>cs", "<cmd>Trouble symbols toggle focus=false<cr>")
 vim.keymap.set("n", "<leader>cl", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>")
 vim.keymap.set("n", "<leader>xL", "<cmd>Trouble loclist toggle<cr>")
 vim.keymap.set("n", "<leader>xQ", "<cmd>Trouble qflist toggle<cr>")
+
+vim.keymap.set("n", "<leader><Tab>", ":TSContextToggle<CR>")
 
 local ft_keymaps = {
 	["*.http"] = function(args)
