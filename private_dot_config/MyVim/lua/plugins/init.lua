@@ -291,6 +291,12 @@ local plugins = {
 			require("focus").setup()
 		end,
 	},
+	{
+		source = "echasnovski/mini.bracketed",
+		config = function()
+			require("mini.bracketed").setup()
+		end,
+	},
 }
 
 for _, p in pairs(plugins) do

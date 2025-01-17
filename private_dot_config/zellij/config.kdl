@@ -4,7 +4,7 @@
 
 keybinds clear-defaults=true {
     locked {
-        bind "Ctrl s" { SwitchToMode "normal"; }
+        bind "Ctrl a" { SwitchToMode "normal"; }
     }
     pane {
         bind "left" { MoveFocus "left"; }
@@ -152,7 +152,7 @@ keybinds clear-defaults=true {
         bind "Ctrl Shift o" { MoveTab "right"; }
     }
     shared_except "locked" "renametab" "renamepane" {
-        bind "Ctrl s" { SwitchToMode "locked"; }
+        bind "Ctrl a" { SwitchToMode "locked"; }
         bind "Ctrl q" { Quit; }
     }
     shared_except "locked" "entersearch" {
@@ -240,7 +240,7 @@ load_plugins {
 //   - true
 //   - false (Default)
 // 
-// simplified_ui true
+simplified_ui true
  
 // Choose the theme that is specified in the themes section.
 // Default: default
@@ -251,6 +251,15 @@ theme "rose-pine"
 // Default: normal
 // 
 default_mode "locked"
+
+default_layout "compact"
+
+pane_frames true
+ui {
+    pane_frames {
+        rounded_corners true
+    }
+}
  
 // Choose the path to the default shell that zellij will use for opening new panes
 // Default: $SHELL
