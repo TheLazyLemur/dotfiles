@@ -19,14 +19,17 @@ require("mini.deps").setup({ path = { package = path_package } })
 local now, later = MiniDeps.now, MiniDeps.later
 
 now(require("mini.statusline").setup)
+
 now(require("mini.misc").setup)
+now(require("mini.misc").setup_restore_cursor)
+now(require("mini.misc").setup_auto_root)
+
 now(require("mini.basics").setup)
+
 now(require("mini.icons").setup)
 now(require("mini.icons").mock_nvim_web_devicons)
-now(require("mini.extra").setup)
 
--- later(require("mini.pick").setup)
--- later(function() vim.ui.select = require("mini.pick").ui_select end)
+now(require("mini.extra").setup)
 
 later(function()
 	local hipatterns = require("mini.hipatterns")
