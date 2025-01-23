@@ -77,3 +77,9 @@ function y() {
 	fi
 	rm -f -- "$tmp"
 }
+
+function fzcd() {
+    local dir
+    dir=$(fd --type directory | fzf)
+    [[ -n "$dir" ]] && cd "$dir"
+}
