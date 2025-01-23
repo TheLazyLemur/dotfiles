@@ -1,15 +1,24 @@
 MiniDeps.add("williamboman/mason.nvim")
 MiniDeps.add("neovim/nvim-lspconfig")
 
+local function build_blink(params)
+	vim.notify("Building blink.cmp", vim.log.levels.INFO)
+	local obj = vim.system({ "cargo", "build", "--release" }, { cwd = params.path }):wait()
+	if obj.code == 0 then
+		vim.notify("Building blink.cmp done", vim.log.levels.INFO)
+	else
+		vim.notify("Building blink.cmp failed", vim.log.levels.ERROR)
+	end
+end
+
 MiniDeps.add({
-	source = "saghen/blink.cmp",
+	source = "Saghen/blink.cmp",
 	depends = {
 		"rafamadriz/friendly-snippets",
 	},
 	hooks = {
-		post_checkout = function()
-			vim.cmd("!cargo build --release")
-		end,
+		post_install = build_blink,
+		post_checkout = build_blink,
 	},
 })
 
@@ -84,7 +93,8 @@ local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
 function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
 	opts = opts or {}
 	opts.border = "rounded"
-	opts.width = math.min(opts.width or 80, 120)
+	opts.wrap = false
+	opts.width = math.min(math.max(vim.o.columns * 0.4, 20), 80)
 	return orig_util_open_floating_preview(contents, syntax, opts, ...)
 end
 
