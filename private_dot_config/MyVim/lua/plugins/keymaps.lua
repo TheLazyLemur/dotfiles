@@ -90,3 +90,6 @@ for key, value in pairs(ft_keymaps) do
 		callback = value,
 	})
 end
+
+vim.keymap.set("n", "<leader>ba", require("harpoon.mark").add_file)
+vim.keymap.set("n", "<leader>bs", require("harpoon.ui").toggle_quick_menu)

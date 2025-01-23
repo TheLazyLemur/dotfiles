@@ -297,6 +297,10 @@ local plugins = {
 			require("mini.bracketed").setup()
 		end,
 	},
+	{
+		source = "ThePrimeagen/harpoon",
+		depends = { "nvim-lua/plenary.nvim" },
+	},
 }
 
 for _, p in pairs(plugins) do
