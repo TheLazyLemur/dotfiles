@@ -6,7 +6,6 @@ return {
 		"jay-babu/mason-nvim-dap.nvim",
 		"leoluz/nvim-dap-go",
 	},
-	lazy = true,
 	config = function()
 		vim.fn.sign_define("DapBreakpoint", {
 			text = " ",

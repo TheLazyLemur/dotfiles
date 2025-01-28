@@ -55,14 +55,6 @@ return {
 						},
 					},
 				})
-
-				vim.api.nvim_create_autocmd({ "BufEnter" }, {
-					pattern = "*.go",
-					group = vim.api.nvim_create_augroup("user-lsp-enter", { clear = true }),
-					callback = function()
-						vim.lsp.inlay_hint.enable(true, { bufnr = 0 })
-					end,
-				})
 			else
 				lspconfig[server].setup({
 					flags = {
