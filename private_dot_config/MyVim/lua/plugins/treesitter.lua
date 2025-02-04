@@ -6,7 +6,7 @@ return {
 	},
 	config = function()
 		require("nvim-treesitter.configs").setup({
-			ensure_installed = { "go" },
+			ensure_installed = { "go", "json", "c_sharp", "javascript", "typescript", "markdown", "dart" },
 			highlight = { enable = true },
 		})
 		require("treesitter-context").setup({})

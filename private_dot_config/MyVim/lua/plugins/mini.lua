@@ -4,6 +4,9 @@ return {
 		require("mini.deps").setup()
 		local now, later = MiniDeps.now, MiniDeps.later
 
+		now(require("mini.diff").setup)
+		now(require("mini.git").setup)
+
 		now(require("mini.statusline").setup)
 
 		now(require("mini.misc").setup)
@@ -14,8 +17,6 @@ return {
 
 		now(require("mini.icons").setup)
 		now(require("mini.icons").mock_nvim_web_devicons)
-
-		now(require("mini.extra").setup)
 
 		later(function()
 			local hipatterns = require("mini.hipatterns")

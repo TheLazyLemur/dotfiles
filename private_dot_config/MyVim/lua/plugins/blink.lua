@@ -33,7 +33,7 @@ return {
 
 		local lspconfig = require("lspconfig")
 		local capabilities = require("blink.cmp").get_lsp_capabilities()
-		local servers = { "gopls", "templ", "lua_ls", "zls", "clangd", "ts_ls", "volar", "svelte", "zls" }
+		local servers = { "gopls", "templ", "lua_ls", "zls", "clangd", "ts_ls", "volar", "svelte", "zls", "htmx" }
 		for _, server in ipairs(servers) do
 			if server == "gopls" then
 				require("lspconfig").gopls.setup({
