@@ -1,19 +1,30 @@
 #!/usr/bin/env bash
 
+set -e
+
+if ! command -v brew &>/dev/null; then
+    echo "Error: Homebrew is not installed. Install it first."
+    exit 1
+fi
+
 brew install ninja cmake gettext curl
 
-mkdir -p $HOME/src
+# Define paths
+NEOVIM_DIR="$HOME/src/neovim"
+INSTALL_DIR="$HOME/local/nvim"
+SHELL_CONFIG="$HOME/.zshrc"
 
-rm -rf $HOME/src/neovim
-git clone https://github.com/neovim/neovim.git $HOME/src/neovim
+mkdir -p "$HOME/src"
 
-cd $HOME/src/neovim
+rm -rf "$NEOVIM_DIR"
+git clone https://github.com/neovim/neovim.git "$NEOVIM_DIR"
 
-make CMAKE_INSTALL_PREFIX=$HOME/local/nvim install
+cd "$NEOVIM_DIR"
+make CMAKE_INSTALL_PREFIX="$INSTALL_DIR" install
 
-if ! grep -Fxq "export PATH=\$HOME/local/nvim/bin:\$PATH" ~/.zshrc; then
-    echo "export PATH=\$HOME/local/nvim/bin:\$PATH" >> ~/.zshrc
-    echo "Line added to .zshrc"
+if ! grep -Fxq "export PATH=\$INSTALL_DIR/bin:\$PATH" "$SHELL_CONFIG"; then
+    echo "export PATH=$INSTALL_DIR/bin:\$PATH" >> "$SHELL_CONFIG"
+    echo "Added Neovim to PATH in $SHELL_CONFIG"
 else
-    echo "Line already exists in .zshrc"
+    echo "Neovim is already in PATH"
 fi
