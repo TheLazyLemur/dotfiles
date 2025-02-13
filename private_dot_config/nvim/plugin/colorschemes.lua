@@ -1,20 +1,25 @@
 vim.opt.background = "dark"
 
 MiniDeps.add({
-	name = "catppuccin",
-	source = "catppuccin/nvim",
+    name = "catppuccin",
+    source = "catppuccin/nvim",
 })
 require("catppuccin").setup({})
 
 MiniDeps.add({
-	name = "rose-pine",
-	source = "rose-pine/neovim",
+    name = "rose-pine",
+    source = "rose-pine/neovim",
 })
 require("rose-pine").setup({})
 
 MiniDeps.add({
-	name = "oxocarbon",
-	source = "nyoom-engineering/oxocarbon.nvim",
+    name = "oxocarbon",
+    source = "nyoom-engineering/oxocarbon.nvim",
+})
+
+MiniDeps.add({
+    name = "vscode",
+    source = "Mofiqul/vscode.nvim",
 })
 
 vim.cmd.colorscheme("rose-pine")
