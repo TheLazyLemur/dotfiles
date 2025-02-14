@@ -1,6 +1,7 @@
 {
     "diagnostics.globals": [
         "vim",
-        "MiniDeps"
+        "MiniDeps",
+        "Snacks"
     ]
 }
