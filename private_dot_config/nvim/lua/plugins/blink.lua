@@ -55,6 +55,7 @@ return {
 						},
 					},
 				})
+				vim.lsp.inlay_hint.enable()
 			else
 				lspconfig[server].setup({
 					flags = {
