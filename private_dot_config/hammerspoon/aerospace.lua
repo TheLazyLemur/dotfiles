@@ -54,6 +54,10 @@ M.swap_monitor = function()
 	aerospaceExec("move-workspace-to-monitor prev")
 end
 
+M.split_opposite = function()
+	aerospaceExec("split opposite")
+end
+
 M.move_to_workspace = function(i)
 	if M.layer == "two" then
 		aerospaceExec("workspace " .. tostring(i + 10))

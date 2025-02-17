@@ -19,6 +19,8 @@ aerospace.setup()
 
 hs.hotkey.bind(AltShift, "tab", aerospace.swap_monitor)
 
+hs.hotkey.bind({ Alt }, "delete", aerospace.split_opposite)
+
 hs.hotkey.bind({ Alt }, left, aerospace.focus_left)
 hs.hotkey.bind({ Alt }, down, aerospace.focus_down)
 hs.hotkey.bind({ Alt }, up, aerospace.focus_up)
