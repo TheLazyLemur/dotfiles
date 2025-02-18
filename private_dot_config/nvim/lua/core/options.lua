@@ -22,6 +22,15 @@ vim.g.loaded_netrwPlugin = 1
 
 require("lazy").setup({
 	spec = {
+		{
+			"folke/lazydev.nvim",
+			ft = "lua", -- only load on lua files
+			opts = {
+				library = {
+					{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+				},
+			},
+		},
 		{ import = "plugins" },
 	},
 	install = { colorscheme = { "habamax" } },

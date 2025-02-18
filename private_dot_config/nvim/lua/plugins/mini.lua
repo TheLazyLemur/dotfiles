@@ -1,34 +1,31 @@
 return {
 	"echasnovski/mini.nvim",
 	config = function()
-		require("mini.deps").setup()
-		local now, later = MiniDeps.now, MiniDeps.later
+		require("mini.diff").setup()
 
-		now(require("mini.diff").setup)
-		now(require("mini.git").setup)
+		require("mini.git").setup()
 
-		now(require("mini.statusline").setup)
+		require("mini.statusline").setup()
+		require("mini.tabline").setup()
 
-		now(require("mini.misc").setup)
-		now(require("mini.misc").setup_restore_cursor)
-		now(require("mini.misc").setup_auto_root)
+		require("mini.misc").setup()
+		require("mini.misc").setup_restore_cursor()
+		require("mini.misc").setup_auto_root()
 
-		now(require("mini.basics").setup)
+		require("mini.basics").setup()
 
-		now(require("mini.icons").setup)
-		now(require("mini.icons").mock_nvim_web_devicons)
+		require("mini.icons").setup()
+		require("mini.icons").mock_nvim_web_devicons()
 
-		later(function()
-			local hipatterns = require("mini.hipatterns")
-			hipatterns.setup({
-				highlighters = {
-					fixme = { pattern = "%f[%w]()FIXME()%f[%W]", group = "MiniHipatternsFixme" },
-					hack = { pattern = "%f[%w]()HACK()%f[%W]", group = "MiniHipatternsHack" },
-					todo = { pattern = "%f[%w]()TODO()%f[%W]", group = "MiniHipatternsTodo" },
-					note = { pattern = "%f[%w]()NOTE()%f[%W]", group = "MiniHipatternsNote" },
-					hex_color = hipatterns.gen_highlighter.hex_color(),
-				},
-			})
-		end)
+		local hipatterns = require("mini.hipatterns")
+		hipatterns.setup({
+			highlighters = {
+				fixme = { pattern = "%f[%w]()FIXME()%f[%W]", group = "MiniHipatternsFixme" },
+				hack = { pattern = "%f[%w]()HACK()%f[%W]", group = "MiniHipatternsHack" },
+				todo = { pattern = "%f[%w]()TODO()%f[%W]", group = "MiniHipatternsTodo" },
+				note = { pattern = "%f[%w]()NOTE()%f[%W]", group = "MiniHipatternsNote" },
+				hex_color = hipatterns.gen_highlighter.hex_color(),
+			},
+		})
 	end,
 }

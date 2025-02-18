@@ -5,26 +5,62 @@ function M.lua_ls_on_init(client)
 	if not path then
 		return
 	end
-	-- override the lua-language-server settings for Neovim config
 	client.settings = vim.tbl_deep_extend("force", client.settings, {
 		Lua = {
 			runtime = {
 				version = "LuaJIT",
 			},
-			-- Make the server aware of Neovim runtime files
 			workspace = {
 				checkThirdParty = false,
 				library = {
 					vim.env.VIMRUNTIME,
-					-- Depending on the usage, you might want to add additional paths here.
-					-- "${3rd}/luv/library"
-					-- "${3rd}/busted/library",
 				},
-				-- or pull in all of 'runtimepath'. NOTE: this is a lot slower
-				-- library = vim.api.nvim_get_runtime_file("", true)
 			},
 		},
 	})
+end
+
+function M.snacks_vscode_bordered()
+	return {
+		preview = false,
+		layout = {
+			backdrop = false,
+			row = 2,
+			width = 0.4,
+			min_width = 80,
+			height = 0.4,
+			border = "none",
+			box = "vertical",
+			{
+				win = "input",
+				height = 1,
+				border = "rounded",
+				title = "{title} {live} {flags}",
+				title_pos = "center",
+			},
+			{ win = "list", border = "rounded" },
+			{ win = "preview", title = "{preview}", border = "rounded" },
+		},
+	}
+end
+
+function M.snacks_vertical()
+	return {
+		layout = {
+			backdrop = false,
+			width = 0.7,
+			min_width = 80,
+			height = 0.8,
+			min_height = 30,
+			box = "vertical",
+			border = "rounded",
+			title = "{title} {live} {flags}",
+			title_pos = "center",
+			{ win = "input", height = 1, border = "bottom" },
+			{ win = "list", border = "none", height = 0.3 },
+			{ win = "preview", title = "{preview}", height = 0.5, border = "top" },
+		},
+	}
 end
 
 return M
