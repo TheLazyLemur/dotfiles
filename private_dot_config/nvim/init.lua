@@ -1,3 +1,4 @@
-require("core")
+MY_OPTS = {}
 
+require("core")
 require("toolbox")
