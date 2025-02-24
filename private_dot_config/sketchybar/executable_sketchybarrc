@@ -10,18 +10,18 @@ sketchybar --bar \
     blur_radius=20 \
     sticky=on \
     font_smoothing=on \
-    color=0xff232136
+    color=0xff181825
 
 sketchybar --default \
     label.font="ComicShannsMono Nerd Font:Bold:18" \
-    label.color=0xffcdd6f4 \
+    label.color=0xffa6adc8 \
     label.padding_left=5 \
     label.padding_right=5 \
     icon.drawing=off \
     background.padding_left=2 \
     background.padding_right=2 \
     background.color=0x00000000 \
-    background.border_color=0xff6c7086 \
+    background.border_color=0xff45475a \
     background.border_width=2 \
     updates=on
 
@@ -35,8 +35,8 @@ sketchybar --add item battery right \
     icon.padding_right=5 \
     label.padding_right=10 \
     icon.drawing=on \
-    icon.color=0xff908caa \
-    label.color=0xff908caa \
+    icon.color=0xffa6adc8 \
+    label.color=0xffa6adc8 \
     background.corner_radius=5
 
 sketchybar --add item clock right \
@@ -48,8 +48,8 @@ sketchybar --add item clock right \
     icon.padding_left=10 \
     icon.padding_right=5 \
     label.padding_right=10 \
-    icon.color=0xff908caa \
-    label.color=0xff908caa \
+    icon.color=0xffa6adc8 \
+    label.color=0xffa6adc8 \
     icon.drawing=on \
     background.corner_radius=5
 
@@ -58,8 +58,8 @@ sketchybar \
     --set sound \
     background.height=40 \
     background.corner_radius=5 \
-    icon.color=0xff908caa \
-    label.color=0xff908caa \
+    icon.color=0xffa6adc8 \
+    label.color=0xffa6adc8 \
     icon.padding_left=10 \
     icon.padding_right=5 \
     label=0 \
@@ -86,17 +86,4 @@ do
         icon.padding_left=10 \
         click_script="aerospace workspace $sid" \
         script="$PLUGIN_DIR/aerospace.sh $sid"
-    done
-
-    sketchybar --add item username center \
-        --set username update_freq=1 icon=  script="$PLUGIN_DIR/resolution.sh" \
-        icon.font="ComicShannsMono Nerd Font:Bold:18" \
-        label.font="ComicShannsMono Nerd Font:Bold:18" \
-        background.height=40 \
-        background.color=0x00000000 \
-        label.padding_left=10 \
-        label.padding_right=10 \
-        icon.color=0xff908caa \
-        label.color=0xff908caa \
-        icon.drawing=on \
-        background.corner_radius=5
+done
