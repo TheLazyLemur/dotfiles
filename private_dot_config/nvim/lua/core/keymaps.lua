@@ -95,7 +95,6 @@ local mc = require("multicursor-nvim")
 local kulala = require("kulala")
 
 map("n", "-", ":Oil<cr>")
-map("n", "<leader>-", ":Yazi<cr>")
 
 map({ "n", "v" }, "<c-n>", function()
 	mc.addCursor("*")
