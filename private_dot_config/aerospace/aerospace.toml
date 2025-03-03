@@ -16,18 +16,12 @@ on-focused-monitor-changed    = ['move-mouse monitor-lazy-center']
 on-focus-changed              = ['move-mouse window-lazy-center']
 
 [gaps]
-inner.horizontal = 5
-inner.vertical   = 5
-outer.left       = 5
-outer.bottom     = 5
-outer.right      = 5
-outer.top        = [{ monitor."Dell" = 60 }, 5]
+inner.horizontal = 20
+inner.vertical   = 20
+outer.left       = 20
+outer.bottom     = 20
+outer.right      = 20
+outer.top        = [{ monitor."Dell" = 60 }, 20]
 
 [mode.main.binding]
 cmd-h = []
-
-[[on-window-detected]]
-if.app-id = "com.mitchellh.ghostty"
-run       = [
-    "layout floating",
-]
