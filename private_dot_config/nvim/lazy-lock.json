@@ -4,7 +4,7 @@
   "catppuccin": { "branch": "main", "commit": "5b5e3aef9ad7af84f463d17b5479f06b87d5c429" },
   "codecompanion.nvim": { "branch": "main", "commit": "77623e79b6d39f05dcd3021d07ab1d37ebe1a50b" },
   "conform.nvim": { "branch": "master", "commit": "a6f5bdb78caa305496357d17e962bbc4c0b392e2" },
-  "e-ink.nvim": { "branch": "main", "commit": "52aa15a848dbe3122f5e4e89949bbc101ff8f0ef" },
+  "e-ink.nvim": { "branch": "main", "commit": "a114e53d709a0fb6928b7ddfbd2db5512e117610" },
   "friendly-snippets": { "branch": "main", "commit": "efff286dd74c22f731cdec26a70b46e5b203c619" },
   "go.nvim": { "branch": "master", "commit": "6ad080424f4b96a584cf591721e8e13c102cce4e" },
   "guihua.lua": { "branch": "master", "commit": "d783191eaa75215beae0c80319fcce5e6b3beeda" },
