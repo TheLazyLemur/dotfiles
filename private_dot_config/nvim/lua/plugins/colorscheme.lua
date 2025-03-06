@@ -30,10 +30,11 @@ return {
 			require("vscode").setup()
 			require("catppuccin").setup()
 
-			vim.cmd.colorscheme("rose-pine")
+			vim.cmd.colorscheme("kanagawa-wave")
+
 			vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#ffffff", bg = "None" })
 			vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#ffffff", bg = "None" })
-			vim.cmd("highlight LspInlayHint guifg=#6C7C3C")
+			-- vim.cmd("highlight LspInlayHint guifg=#6C7C3C")
 			vim.cmd("highlight Pmenu guibg=NONE guifg=NONE")
 		end,
 	},

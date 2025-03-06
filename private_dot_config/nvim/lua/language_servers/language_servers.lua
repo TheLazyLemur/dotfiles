@@ -16,6 +16,8 @@ M.gopls = {
 				parameterNames = true,
 				rangeVariableTypes = true,
 			},
+			staticcheck = true,
+			usePlaceholders = true,
 		},
 	},
 }
