@@ -5,6 +5,7 @@ bold-is-bright = true
 
 theme = Kanagawa Dragon
 
+font-family = "Zed Mono"
 font-thicken = false
 
 window-decoration = true
@@ -12,7 +13,8 @@ background-opacity = 0.9
 
 adjust-underline-position = 40%
 adjust-underline-thickness = -60%
-adjust-cell-height = 30%
+adjust-cell-height = 20%
+adjust-cell-width = 10%
 
 cursor-style = block
 cursor-style-blink = true
