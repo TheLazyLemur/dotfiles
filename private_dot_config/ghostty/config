@@ -7,9 +7,15 @@ theme = Kanagawa Dragon
 
 font-family = "Zed Mono"
 font-thicken = false
+font-feature=-liga
 
 window-decoration = true
+window-padding-color=extend-always
+window-theme=auto
+window-padding-x=7
+window-padding-y=7
 background-opacity = 0.9
+background-blur
 
 adjust-underline-position = 40%
 adjust-underline-thickness = -60%
@@ -27,6 +33,8 @@ keybind=clear
 
 keybind = ctrl+s>r=reload_config
 keybind = ctrl+s>i=inspector:toggle
+
+keybind = ctrl+s>t=new_tab
 
 keybind = ctrl+s>v=new_split:right
 keybind = ctrl+s>s=new_split:down

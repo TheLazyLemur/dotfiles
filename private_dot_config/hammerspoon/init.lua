@@ -53,8 +53,36 @@ hs.hotkey.bind(AltShift, "p", function()
 	aerospace.layout("tiling")
 end)
 
-hs.hotkey.bind({ Alt }, "return", function()
-	os.execute("nohup " .. "open -na /Applications/Ghostty.app" .. " &")
+hs.hotkey.bind({ "alt" }, "return", function()
+	local existing = {}
+	for _, app in ipairs(hs.application.runningApplications()) do
+		if app:name() == "Ghostty" then
+			for _, w in ipairs(app:allWindows()) do
+				existing[w:id()] = true
+			end
+		end
+	end
+
+	os.execute("nohup open -na /Applications/Ghostty.app &")
+
+	hs.timer.doUntil(function()
+		local newWindow = nil
+		for _, app in ipairs(hs.application.runningApplications()) do
+			if app:name() == "Ghostty" then
+				for _, w in ipairs(app:allWindows()) do
+					if not existing[w:id()] then
+						newWindow = w
+						break
+					end
+				end
+			end
+		end
+		if newWindow then
+			aerospace.layout("tiling")
+			return true
+		end
+		return false
+	end, function() end, 0.2)
 end)
 
 hs.hotkey.bind(AltShift, "right", function()
