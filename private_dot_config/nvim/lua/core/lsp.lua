@@ -1,4 +1,4 @@
-local servers = { "gopls", "templ", "lua_ls", "clangd", "ts_ls", "prismals" }
+local servers = { "gopls", "templ", "lua_ls", "clangd", "ts_ls", "prismals", "omnisharp" }
 for _, server in ipairs(servers) do
 	vim.lsp.enable(server)
 end
