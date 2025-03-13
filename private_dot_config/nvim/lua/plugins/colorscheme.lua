@@ -24,13 +24,29 @@ return {
 		},
 		priority = 1000,
 		config = function()
+			-- Apply transparency to key highlight groups
+			vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+			vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+			vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
+			vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
+
+			-- (Optional) Ensure transparency is reapplied if you change your colorscheme:
+			vim.api.nvim_create_autocmd("ColorScheme", {
+				pattern = "*",
+				callback = function()
+					vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+					vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+					vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
+					vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
+				end,
+			})
 			require("kanagawa").setup()
 			require("rose-pine").setup({})
 			require("e-ink").setup()
 			require("vscode").setup()
 			require("catppuccin").setup()
 
-			vim.cmd.colorscheme("kanagawa-wave")
+			vim.cmd.colorscheme("kanagawa-dragon")
 
 			vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#ffffff", bg = "None" })
 			vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#ffffff", bg = "None" })
