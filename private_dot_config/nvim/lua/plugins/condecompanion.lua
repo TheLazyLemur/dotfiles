@@ -2,14 +2,11 @@ return {
     "olimorris/codecompanion.nvim",
     config = function()
         require("codecompanion").setup({
-            strategies = {
-                -- chat = { adapter = "ollama" },
-                -- inline = { adapter = "ollama" },
-            },
+            strategies = {},
             adapters = {
                 llama3 = function()
                     return require("codecompanion.adapters").extend("ollama", {
-                        name = "codegemma:latest", -- Give this adapter a different name to differentiate it from the default ollama adapter
+                        name = "codegemma:latest",
                         schema = {
                             model = {
                                 default = "codegemma:latest",
