@@ -3,24 +3,29 @@ shell-integration-features = no-cursor
 quit-after-last-window-closed = true
 bold-is-bright = true
 
-theme = Kanagawa Dragon
+theme = rose-pine
 
 font-family = "Zed Mono"
-font-thicken = false
-font-feature=-liga
+font-thicken = true
+font-feature=-calt, -liga, -dlig
 
-window-decoration = true
+minimum-contrast = 1
+
+mouse-hide-while-typing = true
+
+window-decoration = false
 window-padding-color=extend-always
 window-theme=auto
+split-divider-color = FFFFFF
 window-padding-x=7
 window-padding-y=7
-background-opacity = 0.9
+background-opacity = 0.95
 background-blur
 
 adjust-underline-position = 40%
 adjust-underline-thickness = -60%
-adjust-cell-height = 20%
-adjust-cell-width = 10%
+adjust-cell-height = 30%
+adjust-cell-width = 30%
 
 cursor-style = block
 cursor-style-blink = true
@@ -54,14 +59,10 @@ keybind = ctrl+s>p=paste_from_clipboard
 keybind = super+c=copy_to_clipboard
 keybind = super+v=paste_from_clipboard
 
-keybind = ctrl+alt+super+shift+h=resize_split:left,10
-keybind = ctrl+alt+super+shift+l=resize_split:right,10
-keybind = ctrl+alt+super+shift+k=resize_split:up,10
-keybind = ctrl+alt+super+shift+j=resize_split:down,10
 
 keybind = ctrl+equal=increase_font_size:1
 keybind = ctrl+minus=decrease_font_size:1
 
 keybind = global:ctrl+shift+space=toggle_quick_terminal
 
-# custom-shader = crt.glsl
+# custom-shader = game.glsl
