@@ -1,6 +1,7 @@
 return {
-	"mistweaverco/kulala.nvim",
-	config = function()
-		require("kulala").setup()
-	end,
+    "mistweaverco/kulala.nvim",
+    ft = { "http", "rest" },
+    opts = {
+        global_keymaps = false,
+    },
 }
