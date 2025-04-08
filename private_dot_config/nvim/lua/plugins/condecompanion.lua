@@ -1,26 +1,24 @@
 return {
-    "olimorris/codecompanion.nvim",
-    config = function()
-        require("codecompanion").setup({
-            strategies = {},
-            adapters = {
-                llama3 = function()
-                    return require("codecompanion.adapters").extend("ollama", {
-                        name = "codegemma:latest",
-                        schema = {
-                            model = {
-                                default = "codegemma:latest",
-                            },
-                            num_ctx = {
-                                default = 16384,
-                            },
-                            num_predict = {
-                                default = -1,
-                            },
-                        },
-                    })
-                end,
-            },
-        })
-    end,
+	"olimorris/codecompanion.nvim",
+	config = function()
+		require("codecompanion").setup({
+			strategies = {
+				chat = {
+					adapter = "copilot",
+				},
+			},
+			adapters = {
+				copilot = function()
+					return require("codecompanion.adapters").extend("copilot", {
+						name = "copilot",
+						schema = {
+							model = {
+								default = "o1",
+							},
+						},
+					})
+				end,
+			},
+		})
+	end,
 }
