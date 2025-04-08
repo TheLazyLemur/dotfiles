@@ -4,11 +4,12 @@ return {
     version = false,
     opts = {
         provider = "copilot",
-        -- provider = "ollama",
         copilot = {
+            model = "claude-3.7-sonnet",
+            -- model = "gpt-4o",
             endpoint = "https://api.githubcopilot.com",
-            allow_insecure = false, -- Allow insecure server connections
-            timeout = 10 * 60 * 1000, -- Timeout in milliseconds
+            allow_insecure = false,
+            timeout = 10 * 60 * 1000,
             temperature = 0,
             max_completion_tokens = 1000000,
             reasoning_effort = "high",
