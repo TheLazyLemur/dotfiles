@@ -1,20 +1,56 @@
 local M = {}
-
--- Define a table to hold bookmarks
---- @type string[]
 local bookmarks = {}
 
+local function get_bookmark_file()
+    return vim.fn.stdpath("data") .. "/bookmarks_" .. vim.fn.getcwd():gsub("[/:]", "_") .. ".txt"
+end
+
+function M.load_bookmarks()
+    bookmarks = {}
+    local file = io.open(get_bookmark_file(), "r")
+    if file then
+        for line in file:lines() do
+            bookmarks[#bookmarks + 1] = line
+        end
+        file:close()
+    end
+end
+
+function M.save_bookmarks()
+    local file = io.open(get_bookmark_file(), "w")
+    if file then
+        for _, bookmark in ipairs(bookmarks) do
+            file:write(bookmark .. "\n")
+        end
+        file:close()
+        print("Bookmarks saved.")
+    else
+        print("Error: Unable to save bookmarks.")
+    end
+end
+
 function M.add_bookmark()
-    local file = vim.fn.expand("%:p")
-    local line = vim.fn.line(".")
-    local bookmark = string.format("%s:%d", file, line)
-    table.insert(bookmarks, bookmark)
+    local bookmark = string.format("%s:%d", vim.fn.expand("%:p"), vim.fn.line("."))
+    bookmarks[#bookmarks + 1] = bookmark
     print("Bookmark added at " .. bookmark)
+    M.save_bookmarks()
+end
+
+function M.delete_bookmark()
+    local line = vim.fn.line(".")
+    if bookmarks[line] then
+        table.remove(bookmarks, line)
+        print("Bookmark deleted.")
+        M.save_bookmarks()
+        local buf = vim.api.nvim_get_current_buf()
+        vim.api.nvim_buf_set_lines(buf, 0, -1, false, #bookmarks > 0 and bookmarks or { "No bookmarks set." })
+    else
+        print("No bookmark found at the current line.")
+    end
 end
 
 function M.open_bookmark_at_line()
-    local line = vim.fn.line(".")
-    local bookmark = bookmarks[line]
+    local bookmark = bookmarks[vim.fn.line(".")]
     if bookmark then
         vim.api.nvim_win_close(0, true)
         local file, lineno = bookmark:match("([^:]+):(%d+)")
@@ -24,35 +60,25 @@ function M.open_bookmark_at_line()
 end
 
 function M.display()
-    local win_width = 60
-    local win_height = math.max(5, #bookmarks)
-    win_height = math.min(win_height, 10)
-    local row = math.floor((vim.o.lines - win_height) / 2)
-    local col = math.floor((vim.o.columns - win_width) / 2)
-
     local buf = vim.api.nvim_create_buf(false, true)
     vim.bo[buf].bufhidden = "wipe"
-
-    local opts = {
+    vim.api.nvim_open_win(buf, true, {
         relative = "editor",
         style = "minimal",
-        width = win_width,
-        height = win_height,
-        row = row,
-        col = col,
+        width = 60,
+        height = math.min(math.max(5, #bookmarks), 10),
+
+        row = math.floor((vim.o.lines - 10) / 2),
+        col = math.floor((vim.o.columns - 60) / 2),
+
         border = "single",
-    }
-    vim.api.nvim_open_win(buf, true, opts)
-
-    if #bookmarks == 0 then
-        vim.api.nvim_buf_set_lines(buf, 0, -1, false, { "No bookmarks set." })
-    else
-        vim.api.nvim_buf_set_lines(buf, 0, -1, false, bookmarks)
-    end
-
+    })
+    vim.api.nvim_buf_set_lines(buf, 0, -1, false, #bookmarks > 0 and bookmarks or { "No bookmarks set." })
     vim.keymap.set("n", "<CR>", M.open_bookmark_at_line, { noremap = true, silent = true, buffer = buf })
+    vim.keymap.set("n", "dd", M.delete_bookmark, { noremap = true, silent = true, buffer = buf })
 end
 
+M.load_bookmarks()
 vim.keymap.set("n", "<leader>mb", M.add_bookmark, { desc = "Add bookmark" })
 vim.keymap.set("n", "<leader>md", M.display, { desc = "Display bookmarks" })
 
