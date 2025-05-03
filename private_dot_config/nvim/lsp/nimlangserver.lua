@@ -1,4 +1,4 @@
 return {
-	cmd = { "nimlangserver" },
-	filetypes = { "nim" },
+    cmd = { "nimlangserver" },
+    filetypes = { "nim" },
 }
