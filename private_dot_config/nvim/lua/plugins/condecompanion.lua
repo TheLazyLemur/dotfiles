@@ -1,26 +1,28 @@
 return {
 	"olimorris/codecompanion.nvim",
+	dependencies = {
+		{
+			"ravitemer/mcphub.nvim",
+			dependencies = {
+				"nvim-lua/plenary.nvim",
+			},
+			build = "npm install -g mcp-hub@latest",
+			config = function()
+				require("mcphub").setup()
+			end,
+		},
+	},
 	config = function()
 		require("codecompanion").setup({
-			strategies = {
-				chat = {
-					adapter = "copilot",
+			extensions = {
+				mcphub = {
+					callback = "mcphub.extensions.codecompanion",
+					opts = {
+						show_result_in_chat = true,
+						make_vars = true,
+						make_slash_commands = true,
+					},
 				},
-			},
-			adapters = {
-				copilot = function()
-					return require("codecompanion.adapters").extend("copilot", {
-						name = "copilot",
-						schema = {
-							model = {
-								-- default = "claude-3.7-sonnet",
-								-- default = "claude-3.5-sonnet",
-								-- default = "gpt-4o",
-								-- default = "o1",
-							},
-						},
-					})
-				end,
 			},
 		})
 	end,
