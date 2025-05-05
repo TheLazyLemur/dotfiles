@@ -1,42 +1,3 @@
--- Bootstrap lazy.nvim
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-    local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-    local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-    if vim.v.shell_error ~= 0 then
-        vim.api.nvim_echo({
-            { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-            { out, "WarningMsg" },
-            { "\nPress any key to exit..." },
-        }, true, {})
-        vim.fn.getchar()
-        os.exit(1)
-    end
-end
-vim.opt.rtp:prepend(lazypath)
-
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
-require("lazy").setup({
-    spec = {
-        {
-            "folke/lazydev.nvim",
-            ft = "lua", -- only load on lua files
-            opts = {
-                library = {
-                    { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-                },
-            },
-        },
-        { import = "plugins" },
-    },
-    install = { colorscheme = { "habamax" } },
-    checker = { enabled = true },
-})
-
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.mouse = "a"
@@ -81,34 +42,34 @@ vim.opt.cmdheight = 0
 
 vim.cmd("filetype plugin indent on")
 vim.filetype.add({
-    extension = {
-        ["http"] = "http",
-        ["templ"] = "templ",
-    },
+	extension = {
+		["http"] = "http",
+		["templ"] = "templ",
+	},
 })
 
 if vim.g.neovide then
-    vim.opt.linespace = 10
-    vim.g.neovide_cursor_animation_length = 0.13
-    vim.g.neovide_cursor_trail_length = 0.8
-    vim.g.neovide_cursor_antialiasing = true
-    vim.g.neovide_refresh_rate = 60
+	vim.opt.linespace = 10
+	vim.g.neovide_cursor_animation_length = 0.13
+	vim.g.neovide_cursor_trail_length = 0.8
+	vim.g.neovide_cursor_antialiasing = true
+	vim.g.neovide_refresh_rate = 60
 
-    vim.keymap.set("n", "<D-s>", ":w<CR>")
-    vim.keymap.set("v", "<D-c>", '"+y')
-    vim.keymap.set("n", "<D-v>", '"+P')
-    vim.keymap.set("v", "<D-v>", '"+P')
-    vim.keymap.set("c", "<D-v>", "<C-R>+")
-    vim.keymap.set("i", "<D-v>", "<C-R>+")
+	vim.keymap.set("n", "<D-s>", ":w<CR>")
+	vim.keymap.set("v", "<D-c>", '"+y')
+	vim.keymap.set("n", "<D-v>", '"+P')
+	vim.keymap.set("v", "<D-v>", '"+P')
+	vim.keymap.set("c", "<D-v>", "<C-R>+")
+	vim.keymap.set("i", "<D-v>", "<C-R>+")
 
-    local function change_font_size(delta)
-        vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + delta
-    end
+	local function change_font_size(delta)
+		vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + delta
+	end
 
-    vim.keymap.set("n", "<C-=>", function()
-        change_font_size(0.1)
-    end)
-    vim.keymap.set("n", "<C-->", function()
-        change_font_size(-0.1)
-    end)
+	vim.keymap.set("n", "<C-=>", function()
+		change_font_size(0.1)
+	end)
+	vim.keymap.set("n", "<C-->", function()
+		change_font_size(-0.1)
+	end)
 end
