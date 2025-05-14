@@ -2,10 +2,11 @@ shell-integration = zsh
 shell-integration-features = no-cursor
 quit-after-last-window-closed = true
 bold-is-bright = true
+window-save-state = never
 
 theme = rose-pine
 
-font-family = "Zed Mono"
+font-family = "ComicShannsMono Nerd Font"
 font-thicken = true
 font-feature=-calt, -liga, -dlig
 
@@ -13,7 +14,7 @@ minimum-contrast = 1
 
 mouse-hide-while-typing = true
 
-window-decoration = false
+window-decoration = true
 window-padding-color=extend-always
 window-theme=auto
 split-divider-color = FFFFFF
@@ -25,7 +26,6 @@ background-blur
 adjust-underline-position = 40%
 adjust-underline-thickness = -60%
 adjust-cell-height = 30%
-adjust-cell-width = 30%
 
 cursor-style = block
 cursor-style-blink = true
@@ -39,7 +39,9 @@ keybind=clear
 keybind = ctrl+s>r=reload_config
 keybind = ctrl+s>i=inspector:toggle
 
-keybind = ctrl+s>t=new_tab
+keybind = ctrl+a>n=new_tab
+keybind = ctrl+a>l=next_tab
+keybind = ctrl+a>h=previous_tab
 
 keybind = ctrl+s>v=new_split:right
 keybind = ctrl+s>s=new_split:down
