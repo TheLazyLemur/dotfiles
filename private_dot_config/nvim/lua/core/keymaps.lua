@@ -69,6 +69,18 @@ map("n", "<leader>p", function()
     snacks.words.jump(-1)
 end)
 
+map("n", "<leader>e", function()
+    Snacks.picker.explorer({ auto_close = false })
+end)
+
+map({ "n", "x", "o" }, "s", function()
+    require("flash").jump()
+end)
+
+map({ "o" }, "r", function()
+    require("flash").remote()
+end)
+
 map("t", "<leader><esc>", [[<C-\><C-n>]])
 
 map({ "n", "i" }, "<leader>c/", ":ReferencePoint<cr>")
