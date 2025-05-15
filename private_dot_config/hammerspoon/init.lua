@@ -1,110 +1,131 @@
 local hs = hs
 
-local aerospace = require("aerospace")
+local Hyper = { "cmd", "alt", "ctrl", "shift" }
 
-local Alt = "alt"
-local Shift = "shift"
-local Ctrl = "ctrl"
-local Cmd = "cmd"
-
-local AltShift = { Alt, Shift }
-local Hyper = { Cmd, Alt, Ctrl, Shift }
-
-local left = "h"
-local down = "j"
-local up = "k"
-local right = "l"
-
--- aerospace.setup()
---
--- hs.hotkey.bind(AltShift, "tab", aerospace.swap_monitor)
---
--- hs.hotkey.bind({ Alt }, "delete", aerospace.split_opposite)
---
--- hs.hotkey.bind({ Alt }, left, aerospace.focus_left)
--- hs.hotkey.bind({ Alt }, down, aerospace.focus_down)
--- hs.hotkey.bind({ Alt }, up, aerospace.focus_up)
--- hs.hotkey.bind({ Alt }, right, aerospace.focus_right)
--- hs.hotkey.bind({ Alt }, "v", aerospace.toggle_layer)
---
--- for i = 1, 9 do
--- 	hs.hotkey.bind({ Alt }, tostring(i), function()
--- 		aerospace.move_to_workspace(i)
--- 	end)
---
--- 	hs.hotkey.bind(AltShift, tostring(i), function()
--- 		aerospace.move_node_to_workspace(i)
--- 	end)
--- end
---
--- hs.hotkey.bind(AltShift, left, aerospace.move_left)
--- hs.hotkey.bind(AltShift, down, aerospace.move_down)
--- hs.hotkey.bind(AltShift, up, aerospace.move_up)
--- hs.hotkey.bind(AltShift, right, aerospace.move_right)
--- hs.hotkey.bind(AltShift, "q", function()
--- 	hs.application.frontmostApplication():kill9()
--- end)
--- hs.hotkey.bind(AltShift, "f", aerospace.fullscreen)
---
--- hs.hotkey.bind(AltShift, "o", function()
--- 	aerospace.layout("floating")
--- end)
--- hs.hotkey.bind(AltShift, "p", function()
--- 	aerospace.layout("tiling")
--- end)
-
-hs.hotkey.bind({ "alt" }, "return", function()
-    local existing = {}
-    for _, app in ipairs(hs.application.runningApplications()) do
-        if app:name() == "Ghostty" then
-            for _, w in ipairs(app:allWindows()) do
-                existing[w:id()] = true
-            end
-        end
-    end
-
-    os.execute("nohup open -na /Applications/Ghostty.app &")
-
-    hs.timer.doUntil(function()
-        local newWindow = nil
-        for _, app in ipairs(hs.application.runningApplications()) do
-            if app:name() == "Ghostty" then
-                for _, w in ipairs(app:allWindows()) do
-                    if not existing[w:id()] then
-                        newWindow = w
-                        break
-                    end
-                end
-            end
-        end
-        if newWindow then
-            aerospace.layout("tiling")
-            return true
-        end
-        return false
-    end, function() end, 0.2)
-end)
-
--- hs.hotkey.bind(AltShift, "right", function()
--- 	aerospace.resize("smart", "+10")
--- end)
---
--- hs.hotkey.bind(AltShift, "left", function()
--- 	aerospace.resize("smart", "-10")
--- end)
---
--- hs.hotkey.bind(AltShift, "up", function()
--- 	aerospace.resize("smart-opposite", "+10")
--- end)
---
--- hs.hotkey.bind(AltShift, "down", function()
--- 	aerospace.resize("smart-opposite", "-10")
--- end)
-
-hs.hotkey.bind(Hyper, "0", function()
+hs.hotkey.bind(Hyper, "r", function()
     hs.reload()
 end)
 
-hs.hotkey.bind(Hyper, "t", function()
-    os.execute("nohup " .. "open -na /Applications/Ghostty.app" .. " &")
+hs.hotkey.bind(Hyper, "q", function()
+    local win = hs.window.focusedWindow()
+    if win then
+        win:close()
+    else
+        hs.alert.show("No focused window")
+    end
+end)
+
+hs.hotkey.bind(Hyper, "return", function()
+    os.execute("nohup open -na /Applications/Ghostty.app &")
+end)
+
+-- Move window to left half of screen
+hs.hotkey.bind(Hyper, "left", function()
+    local win = hs.window.focusedWindow()
+    local f = win:frame()
+    local screen = win:screen()
+    local max = screen:frame()
+
+    f.x = max.x
+    f.y = max.y
+    f.w = max.w / 2
+    f.h = max.h
+    win:setFrame(f)
+end)
+
+-- Move window to right half of screen
+hs.hotkey.bind(Hyper, "right", function()
+    local win = hs.window.focusedWindow()
+    local f = win:frame()
+    local screen = win:screen()
+    local max = screen:frame()
+
+    f.x = max.x + (max.w / 2)
+    f.y = max.y
+    f.w = max.w / 2
+    f.h = max.h
+    win:setFrame(f)
+end)
+
+-- Maximize window
+hs.hotkey.bind(Hyper, "up", function()
+    local win = hs.window.focusedWindow()
+    local f = win:frame()
+    local screen = win:screen()
+    local max = screen:frame()
+
+    f.x = max.x
+    f.y = max.y
+    f.w = max.w
+    f.h = max.h
+    win:setFrame(f)
+end)
+
+-- Almost maximize window (90% of screen)
+hs.hotkey.bind(Hyper, "down", function()
+    local win = hs.window.focusedWindow()
+    local f = win:frame()
+    local screen = win:screen()
+    local max = screen:frame()
+
+    local marginX = max.w * 0.05
+    local marginY = max.h * 0.05
+
+    f.x = max.x + marginX
+    f.y = max.y + marginY
+    f.w = max.w - (2 * marginX)
+    f.h = max.h - (2 * marginY)
+    win:setFrame(f)
+end)
+
+local windowIndex = 1
+local windowList = {}
+local isWindowCycling = false
+local cycleTimer = nil
+
+local function updateWindowList()
+    windowList = {}
+    local wins = hs.window.orderedWindows() -- Gets windows in focus order
+
+    for _, win in ipairs(wins) do
+        if win:isVisible() and win:application() and win:screen() then
+            table.insert(windowList, win)
+        end
+    end
+end
+
+local function cycleWindows()
+    updateWindowList()
+    if #windowList <= 1 then
+        return
+    end
+
+    windowIndex = windowIndex % #windowList + 1
+    windowList[windowIndex]:focus()
+end
+
+-- Start the cycling mode
+hs.hotkey.bind(Hyper, "p", function()
+    if not isWindowCycling then
+        updateWindowList()
+        isWindowCycling = true
+
+        -- If no windows or only one window, do nothing
+        if #windowList <= 1 then
+            isWindowCycling = false
+            return
+        end
+
+        windowIndex = 1
+        if cycleTimer then
+            cycleTimer:stop()
+        end
+    end
+
+    cycleWindows()
+
+    -- Reset after a delay when key is released
+    cycleTimer = hs.timer.doAfter(1, function()
+        isWindowCycling = false
+    end)
 end)
