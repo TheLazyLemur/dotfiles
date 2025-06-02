@@ -1,0 +1,40 @@
+{
+  "mcpServers": {
+    "godoc": {
+      "args": [],
+      "disabled": false,
+      "command": "/Users/danrousseau/go/bin/godoc-mcp-server"
+    },
+    "filesystem": {
+      "args": [
+        "/private/tmp/gofunc"
+      ],
+      "command": "/Users/danrousseau/go/bin/mcp-filesystem-server"
+    },
+    "sequential-thinking": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ]
+    },
+    "memory": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ]
+    },
+    "github.com/modelcontextprotocol/servers/tree/main/src/brave-search": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-brave-search"
+      ],
+      "env": {
+        "BRAVE_API_KEY": "<BRAVE_SEARCH_API_KEY>"
+      }
+    }
+  },
+  "nativeMCPServers": []
+}
