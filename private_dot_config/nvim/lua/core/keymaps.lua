@@ -16,11 +16,11 @@ map("n", "<Tab>", ":bnext<CR>")
 map("n", "<S-Tab>", ":bprevious<CR>")
 
 for i = 1, 9 do
-    map("n", "<leader>" .. tostring(i), function()
-        local buffers = vim.fn.getbufinfo({ bufloaded = 1, buflisted = 1 })
-        local buf = buffers[i]
-        vim.cmd("b " .. buf.bufnr)
-    end)
+	map("n", "<leader>" .. tostring(i), function()
+		local buffers = vim.fn.getbufinfo({ bufloaded = 1, buflisted = 1 })
+		local buf = buffers[i]
+		vim.cmd("b " .. buf.bufnr)
+	end)
 end
 
 map("n", "<C-Up>", ":resize +2<CR>")
@@ -38,7 +38,7 @@ map("n", "ss", "<C-w>s")
 map("n", "sv", "<C-w>v")
 
 map("n", "<esc>", function()
-    vim.cmd("nohlsearch")
+	vim.cmd("nohlsearch")
 end)
 
 map("n", "qq", ":q!<cr>")
@@ -47,38 +47,38 @@ map("n", "qw", ":wq<cr>")
 map("n", "<leader>zz", snacks.zen.zoom)
 
 map("n", "<leader>sf", function()
-    snacks.picker.files({ layout = require("util").snacks_vscode_bordered() })
+	snacks.picker.files({ layout = require("util").snacks_vscode_bordered() })
 end)
 map("n", "<leader>sg", function()
-    snacks.picker.grep({ layout = require("util").snacks_vscode_bordered() })
+	snacks.picker.grep({ layout = require("util").snacks_vscode_bordered() })
 end)
 map("n", "<leader>gs", function()
-    snacks.picker.grep_word({ layout = require("util").snacks_vscode_bordered() })
+	snacks.picker.grep_word({ layout = require("util").snacks_vscode_bordered() })
 end)
 map("n", "<leader><leader>", function()
-    snacks.picker.buffers({ layout = require("util").snacks_vscode_bordered() })
+	snacks.picker.buffers({ layout = require("util").snacks_vscode_bordered() })
 end)
 map("n", "<leader>/", function()
-    snacks.picker.lines({ layout = require("util").snacks_vscode_bordered() })
+	snacks.picker.lines({ layout = require("util").snacks_vscode_bordered() })
 end)
 
 map("n", "<leader>n", function()
-    snacks.words.jump(1)
+	snacks.words.jump(1)
 end)
 map("n", "<leader>p", function()
-    snacks.words.jump(-1)
+	snacks.words.jump(-1)
 end)
 
 map("n", "<leader>e", function()
-    Snacks.picker.explorer({ auto_close = false })
+	Snacks.picker.explorer({ auto_close = false })
 end)
 
 map({ "n", "x", "o" }, "s", function()
-    require("flash").jump()
+	require("flash").jump()
 end)
 
 map({ "o" }, "r", function()
-    require("flash").remote()
+	require("flash").remote()
 end)
 
 map("t", "<leader><esc>", [[<C-\><C-n>]])
@@ -86,21 +86,21 @@ map("t", "<leader><esc>", [[<C-\><C-n>]])
 map({ "n", "i" }, "<leader>c/", ":ReferencePoint<cr>")
 
 vim.api.nvim_create_autocmd("LspAttach", {
-    group = vim.api.nvim_create_augroup("MyVim-LSP-Attach-Keymaps", { clear = true }),
-    callback = function(args)
-        local client = vim.lsp.get_client_by_id(args.data.client_id)
-        if not client then
-            return
-        end
+	group = vim.api.nvim_create_augroup("MyVim-LSP-Attach-Keymaps", { clear = true }),
+	callback = function(args)
+		local client = vim.lsp.get_client_by_id(args.data.client_id)
+		if not client then
+			return
+		end
 
-        local opts = { noremap = true, silent = true, buffer = args.buf }
-        map("n", "gd", vim.lsp.buf.definition, opts)
-        map("n", "gi", vim.lsp.buf.implementation, opts)
-        map("n", "gr", vim.lsp.buf.references, opts)
-        map("n", "K", vim.lsp.buf.hover, opts)
-        map("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-        map("n", "<leader>rn", vim.lsp.buf.rename, opts)
-    end,
+		local opts = { noremap = true, silent = true, buffer = args.buf }
+		map("n", "gd", vim.lsp.buf.definition, opts)
+		map("n", "gi", vim.lsp.buf.implementation, opts)
+		map("n", "gr", vim.lsp.buf.references, opts)
+		map("n", "K", vim.lsp.buf.hover, opts)
+		map("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+		map("n", "<leader>rn", vim.lsp.buf.rename, opts)
+	end,
 })
 
 local dap = require("dap")
@@ -111,27 +111,27 @@ local kulala = require("kulala")
 map("n", "-", ":Oil<cr>")
 
 map({ "n", "v" }, "<c-n>", function()
-    mc.addCursor("*")
+	mc.addCursor("*")
 end)
 map({ "n", "v" }, "<c-s>", function()
-    mc.skipCursor("*")
+	mc.skipCursor("*")
 end)
 map({ "n", "v" }, "<leader>x", mc.deleteCursor)
 
 map({ "n", "v" }, "<c-q>", function()
-    if mc.cursorsEnabled() then
-        mc.disableCursors()
-    else
-        mc.addCursor()
-    end
+	if mc.cursorsEnabled() then
+		mc.disableCursors()
+	else
+		mc.addCursor()
+	end
 end)
 
 map("n", "<leader><esc>", function()
-    if not mc.cursorsEnabled() then
-        mc.enableCursors()
-    elseif mc.hasCursors() then
-        mc.clearCursors()
-    end
+	if not mc.cursorsEnabled() then
+		mc.enableCursors()
+	elseif mc.hasCursors() then
+		mc.clearCursors()
+	end
 end)
 
 map("v", "I", mc.insertVisual)
@@ -139,12 +139,12 @@ map("v", "A", mc.appendVisual)
 map("v", "M", mc.matchCursors)
 
 map("n", "<F5>", function()
-    local ft = vim.bo.filetype
-    if ft == "go" and require("dap").session() == nil then
-        require("dap-go").debug_test()
-    else
-        dap.continue()
-    end
+	local ft = vim.bo.filetype
+	if ft == "go" and require("dap").session() == nil then
+		require("dap-go").debug_test()
+	else
+		dap.continue()
+	end
 end)
 
 map("n", "<F1>", dap.step_into)
@@ -154,7 +154,7 @@ map("n", "<F7>", dapui.toggle)
 
 map("n", "<leader>b", dap.toggle_breakpoint)
 map("n", "<leader>B", function()
-    dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
+	dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
 end, { desc = "Debug: Set Breakpoint" })
 
 map("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>")
@@ -164,43 +164,43 @@ map("n", "<leader>cl", "<cmd>Trouble lsp toggle focus=false win.position=right<c
 map("n", "<leader>xL", "<cmd>Trouble loclist toggle<cr>")
 map("n", "<leader>xQ", "<cmd>Trouble qflist toggle<cr>")
 
-map("n", "<leader><Tab>", ":TSContextToggle<CR>")
+map("n", "<leader><Tab>", ":TSContext toggle<CR>")
 
 local ft_keymaps = {
-    ["*.http"] = function(args)
-        local bufnr = args.buf
-        local opts = { noremap = true, silent = true, buffer = bufnr }
+	["*.http"] = function(args)
+		local bufnr = args.buf
+		local opts = { noremap = true, silent = true, buffer = bufnr }
 
-        map("n", "<CR>", kulala.run, opts)
-    end,
-    ["*test.go"] = function(args)
-        local bufnr = args.buf
-        local opts = { noremap = true, silent = true, buffer = bufnr }
+		map("n", "<CR>", kulala.run, opts)
+	end,
+	["*test.go"] = function(args)
+		local bufnr = args.buf
+		local opts = { noremap = true, silent = true, buffer = bufnr }
 
-        map("n", "<leader>tt", function()
-            require("neotest").run.run(vim.fn.expand("%"))
-        end, opts)
-        map("n", "<leader>tf", function()
-            require("neotest").run.run()
-        end, opts)
-        map("n", "<leader>to", function()
-            vim.cmd("Neotest output")
-        end, opts)
-        map("n", "<leader>tc", ":GoTestSubCase -v -F<CR>", opts)
-        map("n", "<leader><F5>", require("dap-go").debug_test)
-        map("n", "<F9>", function()
-            if require("dap").session() == nil then
-                require("dap-go").debug_last_test()
-            end
-        end)
-    end,
+		map("n", "<leader>tt", function()
+			require("neotest").run.run(vim.fn.expand("%"))
+		end, opts)
+		map("n", "<leader>tf", function()
+			require("neotest").run.run()
+		end, opts)
+		map("n", "<leader>to", function()
+			vim.cmd("Neotest output")
+		end, opts)
+		map("n", "<leader>tc", ":GoTestSubCase -v -F<CR>", opts)
+		map("n", "<leader><F5>", require("dap-go").debug_test)
+		map("n", "<F9>", function()
+			if require("dap").session() == nil then
+				require("dap-go").debug_last_test()
+			end
+		end)
+	end,
 }
 
 local augroup = vim.api.nvim_create_augroup("MyVim-FT-Plugin-Keymaps", { clear = true })
 for key, value in pairs(ft_keymaps) do
-    vim.api.nvim_create_autocmd("BufEnter", {
-        group = augroup,
-        pattern = key,
-        callback = value,
-    })
+	vim.api.nvim_create_autocmd("BufEnter", {
+		group = augroup,
+		pattern = key,
+		callback = value,
+	})
 end
