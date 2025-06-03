@@ -230,6 +230,191 @@ return {
 	},
 	config = function()
 		require("codecompanion").setup({
+			prompt_library = {
+				["MasterCoder"] = {
+					strategy = "chat",
+					description = "Help me code and complete tasks",
+					opts = {
+						index = 11,
+						is_slash_cmd = false,
+						auto_submit = false,
+						short_name = "docs",
+					},
+					-- references = {
+					-- 	{
+					-- 		type = "file",
+					-- 		path = {
+					-- 			"doc/.vitepress/config.mjs",
+					-- 			"lua/codecompanion/config.lua",
+					-- 			"README.md",
+					-- 		},
+					-- 	},
+					-- },
+					prompts = {
+						{
+							role = "user",
+							content = [[
+Follow these steps for each interaction:
+
+1. User Identification:
+   - You should assume that you are interacting with default_user
+   - If you have not identified default_user, proactively try to do so.
+
+2. Memory Retrieval:
+   - Always begin your chat by saying only "Remembering..." and retrieve all relevant information from your knowledge graph
+   - Always refer to your knowledge graph as your "memory"
+
+3. Memory
+    While assisting the user, prioritize retaining and referencing relevant technical information that improves coding support. Specifically track:
+
+    a) Project Context
+
+        Active projects, system architectures, tech stacks (languages, frameworks, libraries, tools)
+
+        Key structural decisions (e.g., monolith vs microservices, repo structure)
+
+        Implementation strategies, design patterns, or workflows discussed
+
+        Specific problems being debugged or optimized
+
+    b) Coding Behaviors
+
+        Patterns in testing, structuring, deployment, debugging
+
+        Preferred libraries (e.g., testify, sqlc, raylib-go), programming paradigms
+
+        Repeated problem-solving approaches or architecture tendencies
+
+    c) Technical Preferences
+
+        Communication style (e.g., terse/direct vs. exploratory)
+
+        Formatting expectations (e.g., markdown specs, task lists, test structures)
+
+        Development philosophies (e.g., favoring code clarity over DRY, or strong modularity)
+
+    d) Engineering Goals
+
+        Feature goals for specific systems (e.g., MVP specs, robust auth, efficient TCP queue)
+
+        Performance benchmarks or architectural targets (e.g., low-latency messaging, test coverage)
+
+        Tooling and automation goals (e.g., LLM integrations, MCP servers)
+
+    e) System Relationships
+
+        Interactions between subsystems (e.g., web components ↔ Go server ↔ DB layer)
+
+        Internal interfaces or contracts between packages/modules
+
+        External service integrations (e.g., Stitch, PayU, Anthropic, SQLite vs Redis)
+
+4. Memory Update:
+    When new technical information is provided, update working memory with precision for code-related continuity:
+
+    a) Capture Entities
+
+        Track recurring codebases, services, modules, tools, or systems as primary entities (e.g., fraud-detection-service, order-mcp, raylib-rts)
+
+        Treat unique workflows (e.g., MCP tool integration, SQLC wrapper repo) as entities if referenced repeatedly
+
+    b) Map Relationships
+
+        Define how modules/systems interact (e.g., LLM service -> MCP server, Go HTTP handler -> core interface)
+
+        Link components to architectural layers (e.g., adapter ↔ core ↔ DB) or to external services (e.g., Redis, SQLite, Fly.io)
+
+    c) Record Technical Observations
+
+        Persist facts like:
+
+            Chosen libraries (e.g., sqlc used for data access, testify for tests)
+
+            Design constraints (e.g., “no shadow DOM,” “in-package mocks only”)
+
+            Identified problems (e.g., “SQLite locking under concurrent writes”)
+
+            Implementation patterns (e.g., “modular monolith with event bus”)
+
+Rules:
+
+ 1. Code Documentation
+
+    Maintain codemap.md rigorously:
+
+        Update it immediately upon adding, modifying, or removing:
+
+            Functions, methods, classes, structs, constants, interfaces, and configuration keys
+
+            Any exported symbols or public-facing behaviors
+
+        Include:
+
+            Purpose and side effects of functions
+
+            Data flow between modules
+
+            Return types and invariants
+
+            Any dependencies (e.g., internal utilities, third-party packages)
+
+    Consult codemap.md before edits:
+
+        Use it to identify existing implementations, avoid duplication, and trace call graphs before extending or rewriting logic
+
+        Do not bypass this step unless codebase familiarity is absolute
+
+    Enforce reuse:
+
+        Reuse existing utilities, helpers, and constants by default
+
+        Justify any functional duplication explicitly via inline comments or commit messages
+
+        Abstract only when real reuse or flexibility is required — avoid speculative generalization
+
+2. Security
+
+    Zero tolerance for secrets in code:
+
+        Never hardcode API keys, secrets, or credentials under any circumstance
+
+        Use .env, config vaults, or runtime secret injection exclusively
+
+        Audit commits with pre-commit hooks or tools like git-secrets or truffleHog
+
+    Environment isolation:
+
+        Keep dev/test/prod credentials isolated with strict environment scoping
+
+        Never reuse prod secrets in local or test contexts
+
+    Harden logic paths:
+
+        Validate all inputs — assume they are hostile by default
+
+        Explicitly handle edge cases, null paths, and error states
+
+        Default to deny (e.g., access control, feature toggles)
+
+    Defensive coding baseline:
+
+        Use constant-time comparisons for sensitive checks
+
+        Sanitize user input at boundaries (e.g., HTTP, CLI, DB layer)
+
+        Log selectively — avoid leaking PII or tokens
+
+    Security review criteria:
+
+        Flag code handling auth, identity, payments, file I/O, or external APIs for peer review
+
+        Treat these areas as mandatory checkpoints in all PRs
+
+]],
+						},
+					},
+				},
+			},
 			opts = {
 				system_prompt = function(_)
 					return [[
@@ -269,42 +454,6 @@ When given a task:
 4. You can only give one reply for each conversation turn.
 5. Store any important information in your memory
 6. Always keep codemap.md up to date as a part of the task, it should keep a map of fucntion to files and other info
-
-Follow these steps for each interaction:
-
-1. User Identification:
-   - You should assume that you are interacting with default_user
-   - If you have not identified default_user, proactively try to do so.
-
-2. Memory Retrieval:
-   - Always begin your chat by saying only "Remembering..." and retrieve all relevant information from your knowledge graph
-   - Always refer to your knowledge graph as your "memory"
-
-3. Memory
-   - While conversing with the user, be attentive to any new information that falls into these categories:
-     a) Basic Identity (age, gender, location, job title, education level, etc.)
-     b) Behaviors (interests, habits, etc.)
-     c) Preferences (communication style, preferred language, etc.)
-     d) Goals (goals, targets, aspirations, etc.)
-     e) Relationships (personal and professional relationships up to 3 degrees of separation)
-
-4. Memory Update:
-   - If any new information was gathered during the interaction, update your memory as follows:
-     a) Create entities for recurring organizations, people, and significant events
-     b) Connect them to the current entities using relations
-     b) Store facts about them as observations
-
-Rules:
-
-1. Code Documentation:
-    - Keep `codemap.md` updated when adding, removing, or modifying functions and classes
-    - Reference `codemap.md` before making changes to understand existing functionality
-    - Ensure new code maximally reuses existing utilities and functions
-
-2 Security
-    - Never commit API tokens or credentials
-    - Use environment variables for sensitive configuration
-    - Follow secure coding practices
                             ]]
 				end,
 			},
@@ -315,6 +464,9 @@ Rules:
 						schema = {
 							model = {
 								default = "claude-sonnet-4",
+								num_ctx = {
+									default = 100000,
+								},
 							},
 						},
 					})
