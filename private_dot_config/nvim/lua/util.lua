@@ -44,4 +44,23 @@ function M.snacks_vscode_bordered()
     }
 end
 
+function M.get_config_dir()
+    return vim.fn.stdpath('config')
+end
+
+function M.load_file(path)
+    local content = ""
+
+    local loaded_file = io.open(path, "r")
+    if loaded_file then
+        content = loaded_file:read("*all")
+        loaded_file:close()
+        print("✓ Successfully read " .. path)
+    else
+        print("✗ Failed to read " .. path)
+    end
+
+    return content
+end
+
 return M
