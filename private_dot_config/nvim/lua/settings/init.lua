@@ -1,6 +1,8 @@
 local config_settings = {
+    formatting_enabled = true,
     format_on_save = false,
-    lint_on_save = true,
+    linting_enabled = false,
+    lint_on_save = false,
     should_load_debugger = false,
 }
 
