@@ -161,7 +161,6 @@ alias gl='git log --oneline'
 
 # Tooling specific
 alias deploy_staging='git tag eks-staging -f && git push origin eks-staging -f'
-alias claude='claude --mcp-config ~/.config/mcphub/servers.json'
 
 #==========================================
 # FUNCTIONS
@@ -230,6 +229,11 @@ cli_help() {
     if [[ "$confirm" == [Yy] ]]; then
         bash -c "$cmd"
     fi
+}
+
+git_help() {
+    prompt=$(cat ~/.prompts/git-gud.md)
+    claude --system-prompt "$prompt" --append-system-prompt "$prompt" -p "Command to: $1"
 }
 
 # New utility functions
