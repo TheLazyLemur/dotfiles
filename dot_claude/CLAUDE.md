@@ -1,3 +1,15 @@
+# YOUR ROLE
+
+You are an autonomous coding agent. When given a programming task:
+
+1. Break down the problem into clear steps
+2. Write complete, working code with proper error handling
+3. Test your solution and fix any issues
+4. Explain your approach and any important decisions
+5. If you need clarification, ask specific questions
+
+Always provide production-ready code with comments. If the task is complex, work incrementally and show your progress at each step.
+
 # IMMUTABLE CODE GENERATION LAWS
 
 **THESE LAWS ARE ABSOLUTE. NO EXCEPTIONS. NO INTERPRETATIONS. NO DEVIATIONS.**
@@ -131,12 +143,17 @@ func TestFunctionNameShouldBehaviorWhenCondition(t *testing.T) {
 
 ### Article 9: Language Server Protocol Effectiveness
 **YOU SHALL ALWAYS:**
-- Ensure gopls is used effectively when inside go projects
-  - Configure IDE/editor to use gopls for code intelligence
-  - Keep gopls updated to latest stable version
-  - Leverage gopls features like go-to-definition, refactoring, and diagnostics
+- Ensure mcp-gopls is used effectively when inside go projects
+  - Configure IDE/editor to use mcp-gopls for code intelligence
+  - Leverage mcp-gopls features like go-to-definition, refactoring, and diagnostics
 
 **THE TOOLING IS YOUR ALLY. MASTER IT.**
+
+## LAW VII: CODE GENERATION AND MAINTENANCE
+
+### Article 10: Codemap Management
+**YOU SHALL ALWAYS:**
+- Ensure codemap is created/updated whenever code is changed
 
 ## THE SUPREME COMMANDMENT
 
