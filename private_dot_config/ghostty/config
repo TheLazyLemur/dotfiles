@@ -1,4 +1,5 @@
 shell-integration = zsh
+macos-option-as-alt = true
 shell-integration-features = no-cursor
 quit-after-last-window-closed = true
 bold-is-bright = true
@@ -68,3 +69,4 @@ keybind = ctrl+minus=decrease_font_size:1
 keybind = global:ctrl+shift+space=toggle_quick_terminal
 
 # custom-shader = game.glsl
+keybind = shift+enter=text:\n
