@@ -161,6 +161,7 @@ alias gl='git log --oneline'
 
 # Tooling specific
 alias deploy_staging='git tag eks-staging -f && git push origin eks-staging -f'
+alias claude='claude --mcp-config ~/.config/mcphub/servers.json'
 
 #==========================================
 # FUNCTIONS
@@ -279,3 +280,11 @@ command -v zoxide >/dev/null && eval "$(zoxide init zsh)"
 #==========================================
 # Source local customizations if they exist
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+
+# bun completions
+[ -s "/Users/danielr/.bun/_bun" ] && source "/Users/danielr/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
