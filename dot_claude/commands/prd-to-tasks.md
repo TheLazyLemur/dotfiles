@@ -1,8 +1,7 @@
-
-description:
-globs:
-alwaysApply: false
 ---
+description: 'Generating a Task List from a PRD'
+---
+
 # Rule: Generating a Task List from a PRD
 
 ## Goal
