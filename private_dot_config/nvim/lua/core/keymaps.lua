@@ -1,6 +1,8 @@
 local map = vim.keymap.set ---@type fun(mode: string|string[], lhs: string, rhs: function|string, opts?: table) = vim.keymap.set
 
 local snacks = require("snacks")
+local bookmark = require("bookmark")
+local term = require("tuiwrapper")
 
 map("n", "<C-h>", "<C-w>h")
 map("n", "<C-j>", "<C-w>j")
@@ -204,6 +206,23 @@ map("n", "<leader><Tab>", ":TSContext toggle<CR>")
 map("n", "<leader><Leader>s", function()
     require("settings"):show_settings()
 end)
+
+map("n", "<leader>mb", bookmark.add_bookmark, { desc = "Add bookmark" })
+map("n", "<leader>md", bookmark.display, { desc = "Display bookmarks" })
+
+map("n", "<leader>g", function()
+    term.lazygit_toggle()
+end)
+
+map("n", "<leader>d", function()
+    term.lazydocker_toggle()
+end)
+
+map("n", "<leader>c", function()
+    term.claude_toggle()
+end)
+
+map({ "n", "t" }, "<leader>tf", ":ToggleTerm<CR>")
 
 local ft_keymaps = {
     ["*.http"] = function(args)

@@ -173,6 +173,7 @@ end
 return {
     "olimorris/codecompanion.nvim",
     dependencies = {
+        "zbirenbaum/copilot.lua",
         {
             "ravitemer/mcphub.nvim",
             dependencies = {

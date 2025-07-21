@@ -30,8 +30,6 @@ vim.opt.smartindent = true
 vim.opt.swapfile = false
 vim.opt.wrap = false
 vim.opt.ruler = false
-vim.opt.breakindent = true
-vim.opt.cursorline = true
 vim.opt.linebreak = true
 vim.opt.pumblend = 10
 vim.opt.pumheight = 10
@@ -42,34 +40,34 @@ vim.opt.cmdheight = 0
 
 vim.cmd("filetype plugin indent on")
 vim.filetype.add({
-	extension = {
-		["http"] = "http",
-		["templ"] = "templ",
-	},
+    extension = {
+        ["http"] = "http",
+        ["templ"] = "templ",
+    },
 })
 
 if vim.g.neovide then
-	vim.opt.linespace = 10
-	vim.g.neovide_cursor_animation_length = 0.13
-	vim.g.neovide_cursor_trail_length = 0.8
-	vim.g.neovide_cursor_antialiasing = true
-	vim.g.neovide_refresh_rate = 60
+    vim.opt.linespace = 10
+    vim.g.neovide_cursor_animation_length = 0.13
+    vim.g.neovide_cursor_trail_length = 0.8
+    vim.g.neovide_cursor_antialiasing = true
+    vim.g.neovide_refresh_rate = 60
 
-	vim.keymap.set("n", "<D-s>", ":w<CR>")
-	vim.keymap.set("v", "<D-c>", '"+y')
-	vim.keymap.set("n", "<D-v>", '"+P')
-	vim.keymap.set("v", "<D-v>", '"+P')
-	vim.keymap.set("c", "<D-v>", "<C-R>+")
-	vim.keymap.set("i", "<D-v>", "<C-R>+")
+    vim.keymap.set("n", "<D-s>", ":w<CR>")
+    vim.keymap.set("v", "<D-c>", '"+y')
+    vim.keymap.set("n", "<D-v>", '"+P')
+    vim.keymap.set("v", "<D-v>", '"+P')
+    vim.keymap.set("c", "<D-v>", "<C-R>+")
+    vim.keymap.set("i", "<D-v>", "<C-R>+")
 
-	local function change_font_size(delta)
-		vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + delta
-	end
+    local function change_font_size(delta)
+        vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + delta
+    end
 
-	vim.keymap.set("n", "<C-=>", function()
-		change_font_size(0.1)
-	end)
-	vim.keymap.set("n", "<C-->", function()
-		change_font_size(-0.1)
-	end)
+    vim.keymap.set("n", "<C-=>", function()
+        change_font_size(0.1)
+    end)
+    vim.keymap.set("n", "<C-->", function()
+        change_font_size(-0.1)
+    end)
 end

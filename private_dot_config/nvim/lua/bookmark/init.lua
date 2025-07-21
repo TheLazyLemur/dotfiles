@@ -79,7 +79,5 @@ function M.display()
 end
 
 M.load_bookmarks()
-vim.keymap.set("n", "<leader>mb", M.add_bookmark, { desc = "Add bookmark" })
-vim.keymap.set("n", "<leader>md", M.display, { desc = "Display bookmarks" })
 
 return M
