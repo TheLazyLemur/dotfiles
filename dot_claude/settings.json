@@ -1,13 +1,12 @@
 {
-  "env": {
-    "CLAUDE_CODE_MAX_OUTPUT_TOKENS": "64000"
-  },
   "permissions": {
     "allow": [
-      "Bash(*)",
-      "Write(*)"
+      "mcp__sequential-thinking__sequentialthinking",
+      "Bash(mkdir:*)",
+      "mcp__context7__resolve-library-id",
+      "mcp__context7__get-library-docs"
     ],
     "deny": []
   },
-  "model": "sonnet"
+  "enableAllProjectMcpServers": true
 }
